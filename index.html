@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIXTEEN</title>
+<meta name="description" content="A daily quiz bowl game. Five prompts, five answers each, sixteen points on the line.">
+<meta name="theme-color" content="#0e1117">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e1117'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='30' font-weight='bold' text-anchor='middle' fill='%235eead4'%3E16%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="icon-btn" id="btn-home" title="Home" aria-label="Home">&#9664;</button>
+  <div class="brand">
+    <span class="brand-mark">16</span>
+    <span class="brand-name">SIXTEEN</span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-btn" id="btn-how" title="How to play" aria-label="How to play">?</button>
+    <button class="icon-btn" id="btn-stats" title="Statistics" aria-label="Statistics">&#9638;</button>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ─────────────────────────────── HOME ─────────────────────────────── -->
+  <section class="screen" id="screen-home">
+    <p class="tagline">Five prompts. Five answers each.<br>Sixteen points on the line.</p>
+
+    <div class="ladder" aria-hidden="true">
+      <div class="rung"><b>1</b><span>1 pt</span></div>
+      <div class="rung"><b>2</b><span>2 pts</span></div>
+      <div class="rung"><b>3</b><span>4 pts</span></div>
+      <div class="rung"><b>4</b><span>8 pts</span></div>
+      <div class="rung hot"><b>5</b><span>16 pts</span></div>
+    </div>
+    <p class="ladder-caption">Correct answers compound. Each miss costs 2.</p>
+
+    <div class="mode-list">
+      <button class="mode-card" id="btn-play-daily">
+        <span class="mode-kicker">Daily</span>
+        <span class="mode-title" id="daily-title">Puzzle No. 1</span>
+        <span class="mode-sub" id="daily-sub">Everyone gets the same five prompts.</span>
+      </button>
+      <button class="mode-card alt" id="btn-play-infinite">
+        <span class="mode-kicker">Infinite</span>
+        <span class="mode-title">Keep playing</span>
+        <span class="mode-sub">A fresh set of five, as many times as you like.</span>
+      </button>
+    </div>
+
+    <div class="home-stats" id="home-stats"></div>
+  </section>
+
+  <!-- ─────────────────────────────── GAME ─────────────────────────────── -->
+  <section class="screen hidden" id="screen-game">
+    <div class="game-head">
+      <div class="dots" id="dots"></div>
+      <div class="game-meta" id="game-meta"></div>
+    </div>
+
+    <div class="card">
+      <div class="cat-chip" id="cat-chip"></div>
+      <h2 class="prompt" id="prompt-text"></h2>
+      <p class="prompt-note" id="prompt-note"></p>
+
+      <ol class="slots" id="slots" aria-label="Your answers"></ol>
+
+      <div class="scale" id="scale" aria-hidden="true"></div>
+
+      <form class="entry" id="entry-form" autocomplete="off">
+        <input type="text" id="answer-input" aria-label="Type an answer" placeholder="Type an answer&hellip;"
+               autocapitalize="off" autocomplete="off" spellcheck="false" enterkeyhint="go">
+        <button type="submit" class="btn primary" id="btn-submit">Enter</button>
+      </form>
+      <p class="feedback" id="feedback" role="status" aria-live="polite">&nbsp;</p>
+
+      <div class="row-actions">
+        <button class="btn ghost" id="btn-lock">Lock in &amp; see answers</button>
+      </div>
+    </div>
+
+    <div class="card reveal hidden" id="reveal">
+      <div class="reveal-head">
+        <span class="reveal-score" id="reveal-score"></span>
+        <span class="reveal-label" id="reveal-label"></span>
+      </div>
+      <p class="reveal-sub">Accepted answers</p>
+      <div class="pill-list" id="reveal-answers"></div>
+      <button class="btn primary wide" id="btn-next">Next prompt</button>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────── RESULTS ───────────────────────────── -->
+  <section class="screen hidden" id="screen-results">
+    <div class="card results">
+      <p class="results-kicker" id="results-kicker"></p>
+      <div class="total" id="results-total"></div>
+      <p class="results-verdict" id="results-verdict"></p>
+
+      <div class="breakdown" id="breakdown"></div>
+
+      <div class="results-actions">
+        <button class="btn primary wide" id="btn-share">Copy results</button>
+        <button class="btn ghost wide hidden" id="btn-again">Play another set</button>
+        <button class="btn ghost wide" id="btn-review">Review answers</button>
+      </div>
+      <p class="feedback" id="share-feedback">&nbsp;</p>
+    </div>
+
+    <div class="card hidden" id="review-panel"></div>
+  </section>
+
+</main>
+
+<!-- ─────────────────────────────── MODALS ─────────────────────────────── -->
+<div class="modal hidden" id="modal-how">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <h3>How to play</h3>
+    <p>Each day brings five prompts &mdash; one per category, drawn from the canon of
+      real quiz bowl: geography, history, literature, science, fine arts, with the
+      occasional turn through myth and philosophy.</p>
+    <p>You may give up to <b>five answers</b> per prompt, or stop at any time.</p>
+    <table class="how-table">
+      <tr><td>1 correct</td><td>1</td></tr>
+      <tr><td>2 correct</td><td>2</td></tr>
+      <tr><td>3 correct</td><td>4</td></tr>
+      <tr><td>4 correct</td><td>8</td></tr>
+      <tr><td>5 correct</td><td><b>16</b></td></tr>
+      <tr class="neg"><td>each miss</td><td>&minus;2</td></tr>
+    </table>
+    <p>Three right and two wrong nets zero. Knowing when to stop is the game.
+      Eighty points is a perfect day.</p>
+    <p><b>Half an answer is neither.</b> Say &ldquo;Henry&rdquo; when the answer is
+      Henry VII and you will be asked to be more specific &mdash; it costs you
+      nothing and does not use up an answer.</p>
+    <p class="muted">Spelling is forgiving, accents and leading articles are ignored,
+      and common alternate titles are accepted.</p>
+  </div>
+</div>
+
+<div class="modal hidden" id="modal-stats">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <h3>Statistics</h3>
+    <div class="stat-grid" id="stat-grid"></div>
+    <p class="reveal-sub">Score distribution</p>
+    <div class="dist" id="dist"></div>
+    <button class="btn ghost wide" id="btn-reset">Reset all data</button>
+  </div>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

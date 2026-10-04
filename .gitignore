@@ -1,36 +1,16 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# SIXTEEN is a static site: no dependencies, no build output, no secrets.
+# Everything below is incidental cruft, not project artifacts.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# macOS
 .DS_Store
-*.pem
+._*
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# editors
+.vscode/
+.idea/
+*.swp
+*~
 
-# local env files
-.env*.local
-.env
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# only matters if dev tooling is ever added; the site itself needs none
+node_modules/
+*.log

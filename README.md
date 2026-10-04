@@ -1,0 +1,183 @@
+# SIXTEEN
+
+A daily quiz bowl game. Five prompts a day, one per category, five answers apiece.
+
+Correct answers compound — **1, 2, 4, 8, 16** points — and every miss costs **2**.
+Three right and two wrong nets zero, so knowing when to stop is the game.
+Eighty points is a perfect day.
+
+Prompts are drawn from the canon that actually shows up at an NAQT tournament:
+geography, history, literature, science, and fine arts, with myth and philosophy
+turning up now and then. No pop culture, no sports.
+
+## A day's worth of prompts
+
+> 🗺️ **Geography** — Name as many of the fourteen eight-thousander mountains as you can.
+>
+> 🏛️ **History** — Name as many Romanov rulers of Russia as you can.
+>
+> 📖 **Literature** — Name as many of the nine circles of Dante's Inferno as you can.
+>
+> 🔬 **Science** — Name as many of the twelve cranial nerves as you can.
+>
+> 🎼 **Fine Arts** — Name as many movements of Pictures at an Exhibition as you can.
+>
+> 🏺 **Myth & Philosophy** — Name as many informal logical fallacies as you can.
+
+Subjects range well past the obvious lists. Prompts ask for the movements of a
+suite, the characters in a novel, the stages of a process, the minerals on a
+scale, the tellers of the Canterbury Tales, unsolved problems in mathematics,
+oceanic trenches, carpal bones, codenamed military operations, tempo markings,
+allotropes of carbon, thought experiments, informal fallacies, Hanseatic cities,
+Gaudí's buildings, the twelve people who have walked on the Moon, and the rivers
+of the Greek underworld.
+
+## Modes
+
+- **Daily** — the same five prompts for everyone, keyed to the calendar date.
+  Progress is saved, so you can finish later, and the results screen gives you a
+  spoiler-free block of squares to copy and share.
+- **Infinite** — a freshly assembled set of five, as often as you like. Recently
+  seen prompts are held back so sets don't repeat themselves.
+
+Everything is stored in `localStorage` on your own device. There is no backend,
+no network request, and no build step.
+
+## Running it locally
+
+```sh
+python3 -m http.server 8777    # then open http://localhost:8777
+```
+
+Opening `index.html` directly from the filesystem works too.
+
+## Deploying to GitHub Pages
+
+**As your user site** (`https://<USER>.github.io`) — put these files at the root of a
+repo named `<USER>.github.io` and push to `main`.
+
+**As a project site** (`https://<USER>.github.io/sixteen/`):
+
+```sh
+git add -A && git commit -m "SIXTEEN"
+git remote add origin git@github.com:<USER>/sixteen.git
+git push -u origin main
+```
+
+Then in the repo: **Settings → Pages → Source: Deploy from a branch → `main` / `/ (root)`**.
+All paths are relative, so the app works from any subdirectory. The `.nojekyll`
+file keeps Pages from running the files through Jekyll.
+
+## Adding more days
+
+`assets/data.js` holds everything: 166 prompts over six categories, and
+twenty-six authored days. Day 27 wraps back to day 1's set, so the calendar
+cycles until you add more. Thirty-six prompts sit outside the calendar and are
+reached only through Infinite mode.
+
+A prompt looks like this:
+
+```js
+{
+  id: 'geo-danube',
+  category: 'geography',            // see CATEGORIES
+  prompt: 'Name as many countries through which the Danube River flows as you can.',
+  note: 'Ten countries, more than any other river.',   // optional
+  answers: [
+    'Germany',
+    'France|French Guiana',         // first form is canonical, rest are accepted
+  ],
+}
+```
+
+Answer matching lowercases, strips accents and punctuation, drops leading
+articles (`the`, `la`, `il`, `der`, …), and forgives a single typo on longer
+answers — but never across differing regnal numbers, so *Henry VI* is not
+accepted for *Henry VII*. Aliases exist for translations, alternate titles,
+and shorthands, not for misspellings.
+
+### Half-stated answers are prompted
+
+Say *Henry* when the answer is *Henry VII* and the game neither credits nor
+penalises you: it asks for a more specific answer, keeps what you typed so you
+can finish it, and spends none of your five slots. This is the moderator's
+"prompt on partial answer," and it is derived automatically — every contiguous
+run of words shorter than a whole answer becomes a prompt trigger, so *Crime*,
+*Notes*, *Thomas*, *neutrino* and *Alpha* all ask rather than score. A run that
+is somebody's complete answer is excluded, which is why *Muon* scores as the
+lepton and *Love* as the Toni Morrison novel even though both also begin a
+longer answer. Runs made only of articles, prepositions and numerals are
+ignored, so *of* and *VII* are plain misses.
+
+Nothing is required of you to get this. Add `promptOn` only to override the
+generic wording, or to catch a fragment the rule cannot derive — a surname
+shared with a famous relative, say, where the word appears in no answer at all:
+
+```js
+promptOn: [
+  { on: 'Roosevelt', say: 'Which Roosevelt?' },
+  'Harrison',                                   // bare string uses the generic wording
+],
+```
+
+A `promptOn` trigger must not also be an accepted answer, or it could never
+fire — the test suite rejects that contradiction. So if you want *Roosevelt*
+prompted, remove it from the alias list.
+
+### Noise: the word every answer shares
+
+In a prompt about national parks, the words *National Park* identify nothing, so
+listing both `Yellowstone` and `Yellowstone National Park` as aliases sixty-three
+times would be waste. Declare the shared phrase instead:
+
+```js
+noise: ['National Park'],
+```
+
+The phrase is stripped from the answer keys and from whatever the player types,
+so the two forms become one, and a response made of nothing but noise
+(`National Park`, `Lake`, `Strait`) is treated as under-specified and prompted
+rather than penalised. Several prompts use it: `Trench`, `Plate`, `Lake`,
+`Mountains`, `Cathedral`, `Strait of`, `Operation`, `Conference`. Stripping never
+empties an answer — the test suite checks every answer in every prompt keeps at
+least one key.
+
+A day is five prompt ids, one per category:
+
+```js
+const DAILY_SETS = [
+  ['geo-afghanistan', 'hist-died-in-office', 'lit-dostoevsky', 'sci-noble-gases', 'arts-stravinsky-ballets'],
+  // append a new array for day 3, day 4, …
+];
+```
+
+Give every prompt **at least five accepted answers**, or a perfect sixteen is
+unreachable. The test suite enforces that.
+
+## Tests
+
+No dependencies — plain Node.
+
+```sh
+node tests/data.test.js    # prompt data integrity, answer matching, scoring, calendar
+node tests/play.test.js    # a full five-prompt playthrough against a fake DOM
+```
+
+`data.test.js` checks that every prompt has five answers, that no two answers in
+one prompt share a match key, that daily sets never repeat a category, and that
+no answer is shadowed by another answer's fragment — every accepted form of
+every answer in every prompt is replayed through the matcher and must score as
+itself. It also asserts that a few dozen plausible-but-wrong answers still cost
+you two points, so no leniency rule quietly turns misses into credit.
+`play.test.js` plays a day end to end — duplicates, passes, early locks, the
+share string, stats, and mid-puzzle resume.
+
+## Layout
+
+```
+index.html          markup and modals
+assets/styles.css   styles
+assets/data.js      categories, prompts, daily sets  ← edit this to add content
+assets/app.js       matching, scoring, rendering, storage
+tests/              node test suites
+```
