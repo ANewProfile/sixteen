@@ -244,6 +244,11 @@ function dailyPromptIds(day) {
   return DAILY_SETS[i];
 }
 
+/* How many recently-seen prompts INFINITE refuses to repeat. Scaled to the size
+ * of the library so the promise holds as content grows: with 250 prompts it
+ * holds back 150, about the last thirty sets. */
+const RECENT_MEMORY = Math.max(25, Math.round(PROMPTS.length * 0.6));
+
 /* An infinite set keeps one prompt per category slot, with Myth & Philosophy
  * occasionally displacing history, literature, or fine arts. */
 function infinitePromptIds() {
@@ -258,7 +263,7 @@ function infinitePromptIds() {
     const from = fresh.length ? fresh : pool;
     return from[Math.floor(Math.random() * from.length)].id;
   });
-  write(K_RECENT, [...ids, ...recent].slice(0, 12));
+  write(K_RECENT, [...ids, ...recent].slice(0, RECENT_MEMORY));
   return ids;
 }
 

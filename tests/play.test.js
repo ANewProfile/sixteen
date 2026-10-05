@@ -33,6 +33,15 @@ global.document = {
   addEventListener() {},
   execCommand: () => true,
 };
+/* Freeze the clock on DAILY_EPOCH so this test always plays puzzle No. 1.
+ * Without this it silently starts testing whatever today's puzzle happens to
+ * be, and the expected answers below stop matching. */
+const RealDate = Date;
+global.Date = class extends RealDate {
+  constructor(...args) { super(...(args.length ? args : [2026, 9, 3])); }
+  static now() { return new RealDate(2026, 9, 3).getTime(); }
+};
+
 global.window = { scrollTo() {} };
 global.location = { origin: 'https://theo.github.io', pathname: '/sixteen/index.html' };
 global.navigator = { clipboard: { writeText: async () => {} } };

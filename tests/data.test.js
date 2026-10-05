@@ -26,7 +26,10 @@ for (const p of ctx.PROMPTS) {
   ok(!ids.has(p.id), 'duplicate id ' + p.id); ids.add(p.id);
   ok(!!ctx.CATEGORIES[p.category], p.id + ' bad category');
   ok(p.answers.length >= 5, p.id + ' has only ' + p.answers.length + ' answers (need 5 for a sixteen)');
-  ok(/as you can\.$/.test(p.prompt), p.id + ' prompt phrasing');
+  /* Two shapes are allowed: the "...as you can." instruction, or a direct
+   * question. Both read naturally above a text box; anything else is a slip. */
+  ok(/(as you can\.|\?)$/.test(p.prompt), p.id + ' prompt phrasing');
+  ok(/^[A-Z“]/.test(p.prompt), p.id + ' prompt should start with a capital');
   const keyOwner = new Map();
   ctx.answerSet(p).forEach((a, i) => {
     ok(a.canonical.length > 0, p.id + ' blank canonical');
@@ -345,12 +348,39 @@ for (const [id, answer] of moreTraps)
   ok(kind(id, answer) === 'miss', `${id}: "${answer}" must be a miss, got ${kind(id, answer)}`);
 
 // ---- the calendar should stay wide enough to be worth playing
-ok(ctx.DAILY_SETS.length >= 26, 'at least 26 authored days');
-ok(ctx.PROMPTS.length >= 160, 'at least 160 prompts');
+ok(ctx.DAILY_SETS.length >= 40, 'at least 40 authored days');
+ok(ctx.PROMPTS.length >= 250, 'at least 250 prompts');
 const perCat = {};
 ctx.PROMPTS.forEach((p) => { perCat[p.category] = (perCat[p.category] || 0) + 1; });
 for (const cat of Object.keys(ctx.CATEGORIES))
-  ok(perCat[cat] >= 15, `${cat} should carry its weight in Infinite (has ${perCat[cat] || 0})`);
+  ok(perCat[cat] >= 35, `${cat} should carry its weight in Infinite (has ${perCat[cat] || 0})`);
+
+// ---- variety: the prompts should not all read the same way
+const openers = {};
+ctx.PROMPTS.forEach((p) => {
+  const k = p.prompt.split(' ').slice(0, 3).join(' ');
+  openers[k] = (openers[k] || 0) + 1;
+});
+const commonest = Math.max(...Object.values(openers));
+ok(commonest / ctx.PROMPTS.length < 0.8,
+   `too samey: ${commonest} of ${ctx.PROMPTS.length} prompts share an opening`);
+ok(ctx.PROMPTS.filter((p) => p.prompt.endsWith('?')).length >= 20,
+   'at least 20 prompts should be phrased as direct questions');
+ok(ctx.PROMPTS.filter((p) => /\. /.test(p.prompt)).length >= 15,
+   'at least 15 prompts should carry a lead-in sentence');
+
+// ---- Infinite should not repeat itself for a long stretch
+{
+  localStorage.removeItem('sixteen.recent.v2');
+  const seen = new Set();
+  let sets = 0;
+  for (; sets < 500; sets++) {
+    const set = ctx.infinitePromptIds();
+    if (set.some((id) => seen.has(id))) break;
+    set.forEach((id) => seen.add(id));
+  }
+  ok(sets >= 25, `Infinite repeated a prompt after only ${sets} sets`);
+}
 
 
 // ---- declared noise: the shared word in a prompt carries no information
@@ -387,6 +417,67 @@ for (const p of ctx.PROMPTS) {
   answers.forEach((a) => ok(a.keys.length > 0 && a.keys.every((k) => k.length > 0),
     `${p.id}: "${a.canonical}" lost all its keys to noise stripping`));
 }
+
+
+// ---- the fourth wave: new shapes
+ok(kind('geo-equator', 'Kenya') === 'hit', 'an equatorial country scores');
+ok(kind('geo-equator', 'Tanzania') === 'miss', 'Tanzania is just south of the line');
+ok(kind('geo-former-countries', 'Yugoslavia') === 'hit', 'a vanished country scores');
+ok(kind('geo-former-countries', 'Croatia') === 'miss', 'Croatia still exists');
+ok(kind('geo-state-capitals', 'Sacramento') === 'hit', 'a state capital scores');
+ok(kind('geo-state-capitals', 'Los Angeles') === 'miss', 'not a capital');
+ok(kind('geo-peninsulas', 'Iberian Peninsula') === 'hit', 'the suffix is noise here');
+ok(kind('geo-peninsulas', 'Peninsula') === 'ask', 'the bare suffix names nothing');
+
+ok(kind('hist-presidents-sec-state', 'James Monroe') === 'hit', 'Monroe held both offices');
+ok(kind('hist-presidents-sec-state', 'Abraham Lincoln') === 'miss', 'Lincoln never did');
+ok(kind('hist-popes-20c', 'John Paul II') === 'hit', 'a 20th-century pope scores');
+ok(J('hist-popes-20c', 'John Paul I').index !== J('hist-popes-20c', 'John Paul II').index,
+   'the two John Pauls are distinct');
+ok(kind('hist-popes-20c', 'Francis') === 'miss', 'Francis was elected in 2013');
+ok(kind('hist-sieges', 'Siege of Vienna') === 'hit', 'the Siege of prefix is noise');
+ok(kind('hist-ancient-battles', 'Battle of Marathon') === 'hit', 'the Battle of prefix is noise');
+ok(kind('hist-ancient-battles', 'Waterloo') === 'miss', 'Waterloo is not antiquity');
+
+ok(kind('lit-pen-names', 'Mark Twain') === 'hit', 'the pen name scores');
+ok(kind('lit-pen-names', 'Samuel Clemens') === 'hit', 'and so does the real name');
+ok(J('lit-pen-names', 'Mark Twain').index === J('lit-pen-names', 'Samuel Clemens').index,
+   'they are the same answer');
+ok(kind('lit-metrical-feet', 'Iamb') === 'hit', 'a metrical foot scores');
+ok(kind('lit-metrical-feet', 'Sonnet') === 'miss', 'a sonnet is not a foot');
+ok(kind('lit-unfinished', 'The Watsons') === 'hit', 'an unfinished novel scores');
+ok(kind('lit-unfinished', 'Pride and Prejudice') === 'miss', 'that one Austen finished');
+
+ok(kind('sci-eponymous-laws', 'Ohm') === 'hit', 'a bare surname scores here');
+ok(kind('sci-eponymous-laws', 'Ohm\u2019s law') === 'hit', 'as does the full name');
+ok(kind('sci-named-after-euler', 'Euler') === 'ask', 'Euler what?');
+ok(J('sci-named-after-euler', 'Euler').message === 'Euler what?', 'with its own wording');
+ok(kind('sci-named-after-euler', 'Euler characteristic') === 'hit', 'a specific one scores');
+ok(kind('sci-glycolysis', 'Glucose-6-phosphate') === 'hit', 'a glycolysis intermediate scores');
+ok(J('sci-glycolysis', 'glucose 6 phosphate').index
+   !== J('sci-glycolysis', 'fructose 6 phosphate').index, 'the two hexose phosphates are distinct');
+ok(kind('sci-glycolysis', 'Lactate') === 'miss', 'lactate comes after glycolysis');
+ok(kind('sci-si-prefixes', 'Femto') === 'hit', 'an SI prefix scores');
+ok(kind('sci-insect-orders', 'Coleoptera') === 'hit', 'an insect order scores');
+ok(kind('sci-insect-orders', 'Arachnida') === 'miss', 'spiders are not insects');
+
+ok(kind('arts-school-of-athens', 'Plato') === 'hit', 'a figure in the fresco scores');
+ok(kind('arts-school-of-athens', 'Raphael') === 'miss', 'the painter is not a philosopher in it');
+ok(kind('arts-brass', 'Trombone') === 'hit', 'a brass instrument scores');
+ok(kind('arts-brass', 'Oboe') === 'miss', 'the oboe is a woodwind');
+ok(kind('arts-percussion', 'Timpani') === 'hit', 'a percussion instrument scores');
+ok(kind('arts-tempo-markings', 'Largo') === 'hit', 'a tempo marking scores');
+
+ok(kind('myth-children-of-zeus', 'Athena') === 'hit', 'a child of Zeus scores');
+ok(kind('myth-children-of-zeus', 'Poseidon') === 'miss', 'Poseidon is his brother');
+ok(kind('myth-trojan-war', 'Achilles') === 'hit', 'a Trojan War figure scores');
+ok(kind('myth-trojan-war', 'Theseus') === 'miss', 'Theseus was a generation earlier');
+ok(kind('myth-orishas', 'Shango') === 'hit', 'an orisha scores');
+ok(kind('phil-women', 'Hannah Arendt') === 'hit', 'a woman philosopher scores');
+ok(kind('phil-ethical-theories', 'Utilitarianism') === 'hit', 'an ethical theory scores');
+ok(kind('phil-ethical-theories', 'Epistemology') === 'miss', 'that is a branch, not a theory');
+ok(kind('phil-islamic', 'Avicenna') === 'hit' && kind('phil-islamic', 'Ibn Sina') === 'hit',
+   'both names for Avicenna score');
 
 console.log(`\n${checks - fails}/${checks} checks passed`);
 process.exit(fails ? 1 : 0);

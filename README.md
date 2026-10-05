@@ -12,25 +12,25 @@ turning up now and then. No pop culture, no sports.
 
 ## A day's worth of prompts
 
-> 🗺️ **Geography** — Name as many of the fourteen eight-thousander mountains as you can.
+> 🗺️ **Geography** — Fourteen mountains rise above 8,000 metres. Name as many as you can.
 >
-> 🏛️ **History** — Name as many Romanov rulers of Russia as you can.
+> 🏛️ **History** — Twelve people have walked on the Moon. Name as many as you can.
 >
-> 📖 **Literature** — Name as many of the nine circles of Dante's Inferno as you can.
+> 📖 **Literature** — Which authors are better known by a pen name?
 >
-> 🔬 **Science** — Name as many of the twelve cranial nerves as you can.
+> 🔬 **Science** — Euler put his name on a staggering amount of mathematics. Name as many things named after him as you can.
 >
-> 🎼 **Fine Arts** — Name as many movements of Pictures at an Exhibition as you can.
+> 🎼 **Fine Arts** — Raphael crowded dozens of thinkers onto one wall of the Vatican. Which philosophers appear in The School of Athens?
 >
-> 🏺 **Myth & Philosophy** — Name as many informal logical fallacies as you can.
+> 🏺 **Myth & Philosophy** — Name as many philosophical thought experiments as you can.
 
-Subjects range well past the obvious lists. Prompts ask for the movements of a
-suite, the characters in a novel, the stages of a process, the minerals on a
-scale, the tellers of the Canterbury Tales, unsolved problems in mathematics,
-oceanic trenches, carpal bones, codenamed military operations, tempo markings,
-allotropes of carbon, thought experiments, informal fallacies, Hanseatic cities,
-Gaudí's buildings, the twelve people who have walked on the Moon, and the rivers
-of the Greek underworld.
+Prompts come in three shapes — a direct question, a lead-in and an instruction,
+or the plain "name as many" form — and ask for all sorts of things: the
+movements of a suite, the cast of a painting, the stages of a process, the
+tellers of the Canterbury Tales, things named after Euler, oceanic trenches,
+metrical feet, Yoruba orishas, codenamed military operations, unsolved problems
+in mathematics, books that were never finished, and countries that no longer
+exist.
 
 ## Modes
 
@@ -38,7 +38,9 @@ of the Greek underworld.
   Progress is saved, so you can finish later, and the results screen gives you a
   spoiler-free block of squares to copy and share.
 - **Infinite** — a freshly assembled set of five, as often as you like. Recently
-  seen prompts are held back so sets don't repeat themselves.
+  seen prompts are held back in proportion to the size of the library, so you can
+  play about thirty consecutive sets — over 150 prompts — before anything
+  repeats.
 
 Everything is stored in `localStorage` on your own device. There is no backend,
 no network request, and no build step.
@@ -70,10 +72,15 @@ file keeps Pages from running the files through Jekyll.
 
 ## Adding more days
 
-`assets/data.js` holds everything: 166 prompts over six categories, and
-twenty-six authored days. Day 27 wraps back to day 1's set, so the calendar
-cycles until you add more. Thirty-six prompts sit outside the calendar and are
-reached only through Infinite mode.
+> Writing prompts is documented in full in **[adding_questions.md](adding_questions.md)**
+> — field reference, how answer matching and prompting work, the rules the test
+> suite enforces, and a worked example. What follows is the summary.
+
+
+`assets/data.js` holds everything: 250 prompts over six categories, and forty
+authored days. Day 41 wraps back to day 1's set, so the calendar cycles until you
+add more. Fifty prompts sit outside the calendar and are reached only through
+Infinite mode.
 
 A prompt looks like this:
 
@@ -163,6 +170,15 @@ node tests/data.test.js    # prompt data integrity, answer matching, scoring, ca
 node tests/play.test.js    # a full five-prompt playthrough against a fake DOM
 ```
 
+There is also an authoring helper, which inspects a single prompt or shows how it
+rules on answers you type:
+
+```sh
+node tests/try.js geo-seven-summits
+node tests/try.js sci-vitamins "Vitamin B" "Thiamine" "vitamin b4"
+node tests/try.js --list literature
+```
+
 `data.test.js` checks that every prompt has five answers, that no two answers in
 one prompt share a match key, that daily sets never repeat a category, and that
 no answer is shadowed by another answer's fragment — every accepted form of
@@ -175,9 +191,12 @@ share string, stats, and mid-puzzle resume.
 ## Layout
 
 ```
-index.html          markup and modals
-assets/styles.css   styles
-assets/data.js      categories, prompts, daily sets  ← edit this to add content
-assets/app.js       matching, scoring, rendering, storage
-tests/              node test suites
+index.html             markup and modals
+assets/styles.css      styles
+assets/data.js         categories, prompts, daily sets  ← edit this to add content
+assets/app.js          matching, scoring, rendering, storage
+tests/data.test.js     content and matching rules
+tests/play.test.js     a full game against a fake DOM
+tests/try.js           authoring helper: inspect a prompt, rule an answer
+adding_questions.md    how to write prompts and answers
 ```

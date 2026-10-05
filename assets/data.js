@@ -29,7 +29,7 @@ const PROMPTS = [
   {
     id: 'geo-afghanistan',
     category: 'geography',
-    prompt: 'Name as many countries that border Afghanistan as you can.',
+    prompt: 'Which countries border Afghanistan?',
     answers: [
       'Iran', 'Pakistan', 'Turkmenistan', 'Uzbekistan', 'Tajikistan',
       'China|People’s Republic of China|PRC',
@@ -38,7 +38,7 @@ const PROMPTS = [
   {
     id: 'geo-danube',
     category: 'geography',
-    prompt: 'Name as many countries through which the Danube River flows as you can.',
+    prompt: 'The Danube runs through more countries than any other river. Name as many as you can.',
     note: 'Ten countries, more than any other river.',
     answers: [
       'Germany', 'Austria', 'Slovakia', 'Hungary', 'Croatia', 'Serbia',
@@ -48,7 +48,7 @@ const PROMPTS = [
   {
     id: 'geo-brazil',
     category: 'geography',
-    prompt: 'Name as many countries that border Brazil as you can.',
+    prompt: 'Which countries border Brazil?',
     answers: [
       'Argentina', 'Uruguay', 'Paraguay', 'Bolivia', 'Peru', 'Colombia',
       'Venezuela', 'Guyana', 'Suriname', 'France|French Guiana',
@@ -57,7 +57,7 @@ const PROMPTS = [
   {
     id: 'geo-great-lakes',
     category: 'geography',
-    prompt: 'Name as many U.S. states that border one of the Great Lakes as you can.',
+    prompt: 'Which U.S. states touch a Great Lake?',
     answers: [
       'Minnesota', 'Wisconsin', 'Illinois', 'Indiana', 'Michigan', 'Ohio',
       'Pennsylvania', 'New York',
@@ -66,14 +66,14 @@ const PROMPTS = [
   {
     id: 'geo-andes',
     category: 'geography',
-    prompt: 'Name as many countries through which the Andes run as you can.',
+    prompt: 'Which countries do the Andes run through?',
     answers: ['Venezuela', 'Colombia', 'Ecuador', 'Peru', 'Bolivia', 'Chile', 'Argentina'],
   },
 
   {
     id: 'geo-eight-thousanders',
     category: 'geography',
-    prompt: 'Name as many of the fourteen eight-thousander mountains as you can.',
+    prompt: 'Fourteen mountains rise above 8,000 metres. Name as many as you can.',
     note: 'Every peak over 8,000 metres; all of them in the Himalaya or Karakoram.',
     answers: [
       'Mount Everest|Everest|Sagarmatha|Chomolungma',
@@ -124,7 +124,7 @@ const PROMPTS = [
   {
     id: 'geo-soviet-republics',
     category: 'geography',
-    prompt: 'Name as many of the fifteen republics of the former Soviet Union as you can.',
+    prompt: 'The Soviet Union was made of fifteen republics. Name as many as you can.',
     answers: [
       'Russia|Russian SFSR', 'Ukraine', 'Belarus|Byelorussia', 'Moldova|Moldavia',
       'Estonia', 'Latvia', 'Lithuania', 'Georgia', 'Armenia', 'Azerbaijan',
@@ -134,7 +134,7 @@ const PROMPTS = [
   {
     id: 'geo-arabian-peninsula',
     category: 'geography',
-    prompt: 'Name as many countries of the Arabian Peninsula as you can.',
+    prompt: 'Which countries occupy the Arabian Peninsula?',
     answers: [
       'Saudi Arabia', 'Yemen', 'Oman', 'United Arab Emirates|UAE|Emirates',
       'Qatar', 'Bahrain', 'Kuwait',
@@ -143,7 +143,7 @@ const PROMPTS = [
   {
     id: 'geo-caribbean-nations',
     category: 'geography',
-    prompt: 'Name as many sovereign island nations of the Caribbean as you can.',
+    prompt: 'Which Caribbean islands are sovereign nations?',
     note: 'Thirteen; Puerto Rico and the French and Dutch islands are not sovereign.',
     answers: [
       'Cuba', 'Jamaica', 'Haiti', 'Dominican Republic', 'Bahamas', 'Barbados',
@@ -168,7 +168,7 @@ const PROMPTS = [
   {
     id: 'geo-volcanoes',
     category: 'geography',
-    prompt: 'Name as many active volcanoes as you can.',
+    prompt: 'Which volcanoes are still active?',
     answers: [
       'Mount Etna|Etna', 'Mount Vesuvius|Vesuvius', 'Stromboli', 'Kilauea',
       'Mauna Loa', 'Mount Fuji|Fuji|Fujisan', 'Popocatepetl', 'Cotopaxi',
@@ -193,7 +193,7 @@ const PROMPTS = [
   {
     id: 'geo-central-america-capitals',
     category: 'geography',
-    prompt: 'Name as many capital cities of Central America as you can.',
+    prompt: 'What are the capitals of the Central American countries?',
     answers: [
       'Guatemala City', 'Belmopan', 'San Salvador', 'Tegucigalpa', 'Managua',
       'San Jose', 'Panama City',
@@ -203,7 +203,7 @@ const PROMPTS = [
   {
     id: 'geo-landlocked-africa',
     category: 'geography',
-    prompt: 'Name as many landlocked countries of Africa as you can.',
+    prompt: 'Which African countries have no coastline?',
     note: 'Sixteen.',
     answers: [
       'Mali', 'Burkina Faso', 'Niger', 'Chad',
@@ -227,7 +227,7 @@ const PROMPTS = [
   {
     id: 'geo-tectonic-plates',
     category: 'geography',
-    prompt: 'Name as many of Earth’s tectonic plates as you can.',
+    prompt: 'Which tectonic plates carry Earth’s surface?',
     noise: ['Plate'],
     answers: [
       'Pacific Plate|Pacific', 'North American Plate|North American',
@@ -283,7 +283,7 @@ const PROMPTS = [
   {
     id: 'geo-seven-summits',
     category: 'geography',
-    prompt: 'Name as many of the Seven Summits as you can.',
+    prompt: 'The Seven Summits are the highest peak on each continent. Name as many as you can.',
     note: 'The highest peak on each continent; two lists disagree about Oceania.',
     answers: [
       'Mount Everest|Everest', 'Aconcagua', 'Denali|Mount McKinley',
@@ -309,7 +309,7 @@ const PROMPTS = [
   {
     id: 'geo-longest-rivers',
     category: 'geography',
-    prompt: 'Name as many of the world’s longest rivers as you can.',
+    prompt: 'Which are the longest rivers in the world?',
     answers: [
       'Nile', 'Amazon', 'Yangtze', 'Mississippi', 'Yenisei',
       'Yellow River|Huang He', 'Ob', 'Parana', 'Congo', 'Amur', 'Lena',
@@ -321,7 +321,7 @@ const PROMPTS = [
   {
     id: 'geo-hawaiian-islands',
     category: 'geography',
-    prompt: 'Name as many of the main Hawaiian islands as you can.',
+    prompt: 'What are the main islands of Hawaii?',
     answers: [
       'Hawaii|Big Island', 'Maui', 'Oahu', 'Kauai', 'Molokai', 'Lanai',
       'Niihau', 'Kahoolawe',
@@ -364,11 +364,186 @@ const PROMPTS = [
     ],
   },
 
+  {
+    id: 'geo-equator',
+    category: 'geography',
+    prompt: 'Which countries does the equator pass through?',
+    note: 'Thirteen.',
+    answers: [
+      'Sao Tome and Principe|Sao Tome', 'Gabon', 'Republic of the Congo|Congo',
+      'Democratic Republic of the Congo|DR Congo|Zaire', 'Uganda', 'Kenya',
+      'Somalia', 'Maldives', 'Indonesia', 'Ecuador', 'Colombia', 'Brazil',
+      'Kiribati',
+    ],
+  },
+  {
+    id: 'geo-year-of-africa',
+    category: 'geography',
+    prompt: 'Seventeen countries became independent in 1960, most of them African. Name as many as you can.',
+    answers: [
+      'Cameroon', 'Togo', 'Madagascar',
+      'Democratic Republic of the Congo|Congo|Zaire', 'Somalia',
+      'Benin|Dahomey', 'Niger', 'Burkina Faso|Upper Volta',
+      'Ivory Coast|Cote d’Ivoire', 'Chad', 'Central African Republic|CAR',
+      'Republic of the Congo|Congo-Brazzaville', 'Gabon', 'Senegal', 'Mali',
+      'Nigeria', 'Mauritania', 'Cyprus',
+    ],
+  },
+  {
+    id: 'geo-named-after-people',
+    category: 'geography',
+    prompt: 'Which countries are named after a person?',
+    answers: [
+      'Bolivia', 'Colombia', 'Philippines', 'Saudi Arabia', 'Israel',
+      'Mauritius', 'Seychelles', 'Saint Lucia', 'San Marino',
+      'Solomon Islands', 'Marshall Islands', 'Dominican Republic',
+      'El Salvador', 'Eswatini|Swaziland', 'Kiribati',
+      'Sao Tome and Principe|Sao Tome',
+    ],
+  },
+  {
+    id: 'geo-former-countries',
+    category: 'geography',
+    prompt: 'Which countries have ceased to exist?',
+    answers: [
+      'Yugoslavia', 'Czechoslovakia', 'Soviet Union|USSR',
+      'East Germany|German Democratic Republic', 'West Germany',
+      'Ottoman Empire', 'Austria-Hungary', 'Prussia', 'Rhodesia', 'Zaire',
+      'Tanganyika', 'Zanzibar', 'South Vietnam', 'North Vietnam',
+      'South Yemen', 'North Yemen', 'United Arab Republic', 'Sikkim',
+      'Gran Colombia', 'Kingdom of the Two Sicilies|Two Sicilies', 'Biafra',
+      'Republic of Texas', 'Kingdom of Hawaii', 'Newfoundland',
+      'Serbia and Montenegro', 'Burma',
+    ],
+  },
+  {
+    id: 'geo-canals',
+    category: 'geography',
+    prompt: 'Name as many ship canals as you can.',
+    answers: [
+      'Suez Canal|Suez', 'Panama Canal|Panama', 'Kiel Canal|Kiel',
+      'Corinth Canal|Corinth', 'Erie Canal|Erie', 'Grand Canal',
+      'Welland Canal|Welland', 'Gota Canal|Gota',
+      'Rhine-Main-Danube Canal', 'Caledonian Canal|Caledonian',
+      'Saint Lawrence Seaway', 'Albert Canal', 'White Sea-Baltic Canal',
+      'Volga-Don Canal', 'Houston Ship Channel',
+    ],
+  },
+  {
+    id: 'geo-peninsulas',
+    category: 'geography',
+    prompt: 'Name as many peninsulas as you can.',
+    noise: ['Peninsula'],
+    answers: [
+      'Iberian', 'Scandinavian', 'Balkan', 'Italian|Apennine',
+      'Anatolian|Asia Minor', 'Arabian', 'Deccan|Indian', 'Indochinese',
+      'Korean', 'Malay', 'Kamchatka', 'Yucatan', 'Florida',
+      'Baja California', 'Jutland', 'Crimean|Crimea', 'Kola', 'Sinai',
+      'Cape York', 'Gaspe', 'Iberia',
+    ],
+  },
+  {
+    id: 'geo-highest-capitals',
+    category: 'geography',
+    prompt: 'Which national capitals sit highest above sea level?',
+    answers: [
+      'La Paz', 'Quito', 'Sucre', 'Bogota', 'Addis Ababa', 'Asmara',
+      'Thimphu', 'Sanaa', 'Mexico City', 'Nairobi', 'Kathmandu',
+      'Tegucigalpa', 'Windhoek', 'Ulaanbaatar', 'Kabul', 'Tehran', 'Ankara',
+      'Madrid', 'Pretoria', 'Gaborone',
+    ],
+  },
+  {
+    id: 'geo-transcontinental',
+    category: 'geography',
+    prompt: 'Which countries lie on two continents?',
+    note: 'By the common reckoning; several are argued over.',
+    answers: [
+      'Russia', 'Turkey', 'Kazakhstan', 'Egypt', 'Azerbaijan', 'Georgia',
+      'Indonesia', 'Panama', 'Spain', 'Denmark', 'France', 'Netherlands',
+      'Yemen',
+    ],
+  },
+  {
+    id: 'geo-deltas',
+    category: 'geography',
+    prompt: 'Name as many major river deltas as you can.',
+    noise: ['Delta'],
+    answers: [
+      'Nile', 'Ganges-Brahmaputra|Ganges', 'Mississippi', 'Mekong', 'Danube',
+      'Volga', 'Niger', 'Rhine-Meuse|Rhine', 'Po', 'Ebro', 'Rhone', 'Indus',
+      'Irrawaddy', 'Orinoco', 'Amazon', 'Yellow River|Huang He',
+      'Pearl River', 'Okavango', 'Lena', 'Colorado', 'Tigris-Euphrates|Shatt al-Arab',
+    ],
+  },
+  {
+    id: 'geo-endorheic',
+    category: 'geography',
+    prompt: 'A few seas and lakes have no outlet to the ocean. Name as many as you can.',
+    answers: [
+      'Caspian Sea|Caspian', 'Aral Sea|Aral', 'Dead Sea', 'Great Salt Lake',
+      'Lake Eyre', 'Lake Chad', 'Lake Balkhash', 'Issyk-Kul', 'Lake Urmia',
+      'Qinghai Lake|Koko Nor', 'Lake Van', 'Salton Sea', 'Lake Turkana',
+      'Lop Nur', 'Lake Tuz', 'Lake Titicaca', 'Lake Bonneville',
+    ],
+  },
+  {
+    id: 'geo-pacific-nations',
+    category: 'geography',
+    prompt: 'Which Pacific island groups are independent countries?',
+    answers: [
+      'Fiji', 'Papua New Guinea', 'Solomon Islands', 'Vanuatu', 'Samoa',
+      'Tonga', 'Kiribati', 'Tuvalu', 'Nauru', 'Palau', 'Marshall Islands',
+      'Micronesia|Federated States of Micronesia', 'New Zealand',
+      'East Timor|Timor-Leste',
+    ],
+  },
+  {
+    id: 'geo-megacities',
+    category: 'geography',
+    prompt: 'Which cities have metropolitan populations above twenty million?',
+    answers: [
+      'Tokyo', 'Delhi', 'Shanghai', 'Dhaka', 'Sao Paulo', 'Cairo',
+      'Mexico City', 'Beijing', 'Mumbai', 'Osaka', 'Karachi', 'Chongqing',
+      'Istanbul', 'Buenos Aires', 'Kolkata', 'Lagos', 'Manila', 'Guangzhou',
+      'Rio de Janeiro', 'Shenzhen', 'Tianjin', 'Kinshasa', 'Lahore',
+      'Bangalore', 'New York', 'Jakarta', 'Seoul', 'Moscow',
+    ],
+  },
+  {
+    id: 'geo-state-capitals',
+    category: 'geography',
+    prompt: 'Name as many U.S. state capitals as you can.',
+    answers: [
+      'Montgomery', 'Juneau', 'Phoenix', 'Little Rock', 'Sacramento',
+      'Denver', 'Hartford', 'Dover', 'Tallahassee', 'Atlanta', 'Honolulu',
+      'Boise', 'Springfield', 'Indianapolis', 'Des Moines', 'Topeka',
+      'Frankfort', 'Baton Rouge', 'Augusta', 'Annapolis', 'Boston',
+      'Lansing', 'Saint Paul', 'Jackson', 'Jefferson City', 'Helena',
+      'Lincoln', 'Carson City', 'Concord', 'Trenton', 'Santa Fe', 'Albany',
+      'Raleigh', 'Bismarck', 'Columbus', 'Oklahoma City', 'Salem',
+      'Harrisburg', 'Providence', 'Columbia', 'Pierre', 'Nashville',
+      'Austin', 'Salt Lake City', 'Montpelier', 'Richmond', 'Olympia',
+      'Charleston', 'Madison', 'Cheyenne',
+    ],
+  },
+  {
+    id: 'geo-mediterranean-seas',
+    category: 'geography',
+    prompt: 'The Mediterranean is carved into smaller seas. Name as many as you can.',
+    noise: ['Sea'],
+    answers: [
+      'Adriatic', 'Aegean', 'Ionian', 'Tyrrhenian', 'Ligurian', 'Alboran',
+      'Balearic', 'Levantine', 'Sea of Marmara|Marmara', 'Sea of Crete|Cretan',
+      'Libyan', 'Sardinian', 'Thracian', 'Myrtoan', 'Icarian',
+    ],
+  },
+
   /* ------------------------------------------------------------------ HISTORY */
   {
     id: 'hist-died-in-office',
     category: 'history',
-    prompt: 'Name as many U.S. presidents who died in office as you can.',
+    prompt: 'Which U.S. presidents died in office?',
     /* A bare surname here is shared with a president who did not die in office,
      * so it is prompted rather than credited. The generic prompt would fire on
      * both anyway — these entries only supply the better wording. */
@@ -390,7 +565,7 @@ const PROMPTS = [
   {
     id: 'hist-tudors',
     category: 'history',
-    prompt: 'Name as many monarchs of the House of Tudor as you can.',
+    prompt: 'Who were the monarchs of the House of Tudor?',
     answers: [
       'Henry VII|Henry 7|Henry the Seventh',
       'Henry VIII|Henry 8|Henry the Eighth',
@@ -403,7 +578,7 @@ const PROMPTS = [
   {
     id: 'hist-soviet-leaders',
     category: 'history',
-    prompt: 'Name as many leaders of the Soviet Union as you can.',
+    prompt: 'Who led the Soviet Union?',
     answers: [
       'Vladimir Lenin|Lenin',
       'Joseph Stalin|Stalin',
@@ -418,7 +593,7 @@ const PROMPTS = [
   {
     id: 'hist-henry-wives',
     category: 'history',
-    prompt: 'Name as many of the six wives of Henry VIII as you can.',
+    prompt: 'Henry VIII married six times. Name as many of his wives as you can.',
     answers: [
       'Catherine of Aragon|Katherine of Aragon',
       'Anne Boleyn|Boleyn',
@@ -431,7 +606,7 @@ const PROMPTS = [
   {
     id: 'hist-five-good-emperors',
     category: 'history',
-    prompt: 'Name as many of the Five Good Emperors of Rome as you can.',
+    prompt: 'Who were the Five Good Emperors of Rome?',
     answers: ['Nerva', 'Trajan', 'Hadrian', 'Antoninus Pius|Antoninus', 'Marcus Aurelius|Aurelius'],
   },
 
@@ -459,7 +634,7 @@ const PROMPTS = [
   {
     id: 'hist-romanovs',
     category: 'history',
-    prompt: 'Name as many Romanov rulers of Russia as you can.',
+    prompt: 'The Romanovs held Russia for three centuries. Name as many of them as you can.',
     answers: [
       'Michael I|Michael Romanov', 'Alexis|Alexis I|Alexei I', 'Feodor III',
       'Ivan V', 'Peter I|Peter the Great', 'Catherine I', 'Peter II',
@@ -471,7 +646,7 @@ const PROMPTS = [
   {
     id: 'hist-un-secretaries-general',
     category: 'history',
-    prompt: 'Name as many Secretaries-General of the United Nations as you can.',
+    prompt: 'Who has served as Secretary-General of the United Nations?',
     answers: [
       'Trygve Lie|Lie', 'Dag Hammarskjold|Hammarskjold', 'U Thant|Thant',
       'Kurt Waldheim|Waldheim', 'Javier Perez de Cuellar|Perez de Cuellar',
@@ -522,7 +697,7 @@ const PROMPTS = [
   {
     id: 'hist-chief-justices',
     category: 'history',
-    prompt: 'Name as many Chief Justices of the United States as you can.',
+    prompt: 'Who has served as Chief Justice of the United States?',
     answers: [
       'John Jay|Jay', 'John Rutledge|Rutledge', 'Oliver Ellsworth|Ellsworth',
       'John Marshall|Marshall', 'Roger Taney|Taney', 'Salmon Chase|Chase',
@@ -536,7 +711,7 @@ const PROMPTS = [
   {
     id: 'hist-thirteen-colonies',
     category: 'history',
-    prompt: 'Name as many of the Thirteen Colonies as you can.',
+    prompt: 'What were the Thirteen Colonies?',
     answers: [
       'Virginia', 'Massachusetts|Massachusetts Bay', 'New Hampshire', 'Maryland',
       'Connecticut', 'Rhode Island', 'Delaware', 'North Carolina',
@@ -546,7 +721,7 @@ const PROMPTS = [
   {
     id: 'hist-ancient-wonders',
     category: 'history',
-    prompt: 'Name as many of the Seven Wonders of the Ancient World as you can.',
+    prompt: 'What were the Seven Wonders of the Ancient World?',
     answers: [
       'Great Pyramid of Giza|Pyramid of Giza|Great Pyramid',
       'Hanging Gardens of Babylon|Hanging Gardens',
@@ -584,7 +759,7 @@ const PROMPTS = [
   {
     id: 'hist-moonwalkers',
     category: 'history',
-    prompt: 'Name as many people who have walked on the Moon as you can.',
+    prompt: 'Twelve people have walked on the Moon. Name as many as you can.',
     note: 'Twelve, all between 1969 and 1972.',
     answers: [
       'Neil Armstrong|Armstrong', 'Buzz Aldrin|Aldrin', 'Pete Conrad|Conrad',
@@ -626,7 +801,7 @@ const PROMPTS = [
   {
     id: 'hist-seven-hills',
     category: 'history',
-    prompt: 'Name as many of the Seven Hills of Rome as you can.',
+    prompt: 'What are the Seven Hills of Rome?',
     answers: [
       'Aventine', 'Caelian', 'Capitoline', 'Esquiline', 'Palatine', 'Quirinal',
       'Viminal',
@@ -655,7 +830,7 @@ const PROMPTS = [
   {
     id: 'hist-hanseatic-cities',
     category: 'history',
-    prompt: 'Name as many cities of the Hanseatic League as you can.',
+    prompt: 'Which cities belonged to the Hanseatic League?',
     answers: [
       'Lubeck', 'Hamburg', 'Bremen', 'Danzig|Gdansk', 'Riga', 'Novgorod',
       'Bergen', 'Cologne|Koln', 'Rostock', 'Wismar', 'Stralsund', 'Visby',
@@ -746,11 +921,196 @@ const PROMPTS = [
     ],
   },
 
+  {
+    id: 'hist-presidents-sec-state',
+    category: 'history',
+    prompt: 'Which U.S. presidents had served as Secretary of State?',
+    note: 'Six, all of them early.',
+    answers: [
+      'Thomas Jefferson|Jefferson', 'James Madison|Madison',
+      'James Monroe|Monroe', 'John Quincy Adams|Quincy Adams',
+      'Martin Van Buren|Van Buren', 'James Buchanan|Buchanan',
+    ],
+  },
+  {
+    id: 'hist-women-rulers',
+    category: 'history',
+    prompt: 'Which queens and empresses ruled in their own right?',
+    answers: [
+      'Elizabeth I', 'Queen Victoria|Victoria',
+      'Catherine the Great|Catherine II', 'Maria Theresa', 'Isabella I',
+      'Cleopatra VII|Cleopatra', 'Hatshepsut', 'Wu Zetian', 'Nzinga',
+      'Zenobia', 'Christina of Sweden|Christina', 'Queen Anne|Anne',
+      'Mary I', 'Margaret I', 'Tamar of Georgia|Tamar', 'Suiko',
+      'Irene of Athens|Irene', 'Elizabeth II', 'Ranavalona I|Ranavalona',
+      'Theodora', 'Jadwiga', 'Maria I of Portugal',
+    ],
+  },
+  {
+    id: 'hist-popes-20c',
+    category: 'history',
+    prompt: 'Which popes reigned during the twentieth century?',
+    answers: [
+      'Leo XIII', 'Pius X', 'Benedict XV', 'Pius XI', 'Pius XII',
+      'John XXIII', 'Paul VI', 'John Paul I', 'John Paul II',
+    ],
+  },
+  {
+    id: 'hist-caliphs',
+    category: 'history',
+    prompt: 'Name as many caliphs as you can.',
+    answers: [
+      'Abu Bakr', 'Umar|Umar ibn al-Khattab', 'Uthman', 'Ali|Ali ibn Abi Talib',
+      'Muawiya', 'Abd al-Malik', 'Umar II', 'Harun al-Rashid',
+      'al-Mansur', 'al-Mamun', 'Yazid I', 'Hisham', 'al-Walid',
+      'Abu al-Abbas|al-Saffah', 'al-Mutasim', 'Sulayman',
+    ],
+  },
+  {
+    id: 'hist-sieges',
+    category: 'history',
+    prompt: 'Name as many famous sieges as you can.',
+    noise: ['Siege of'],
+    answers: [
+      'Troy', 'Masada', 'Constantinople', 'Jerusalem', 'Vienna', 'Leningrad',
+      'Stalingrad', 'Sevastopol', 'the Alamo|Alamo', 'Yorktown', 'Vicksburg',
+      'Petersburg', 'Orleans', 'Tyre', 'Syracuse', 'Carthage', 'Numantia',
+      'Alesia', 'Malta', 'Khartoum', 'Mafeking', 'Dien Bien Phu', 'Sarajevo',
+      'Acre', 'Antioch', 'Rhodes',
+    ],
+  },
+  {
+    id: 'hist-worlds-fairs',
+    category: 'history',
+    prompt: 'Which cities have hosted a World’s Fair?',
+    answers: [
+      'London', 'Paris', 'Philadelphia', 'Chicago', 'St. Louis', 'New York',
+      'Brussels', 'Montreal', 'Osaka', 'Seville', 'Shanghai', 'Milan',
+      'Dubai', 'Vienna', 'Barcelona', 'San Francisco', 'Seattle', 'Knoxville',
+      'New Orleans', 'Vancouver', 'Lisbon', 'Hanover', 'Melbourne',
+      'Buffalo', 'Nagoya|Aichi', 'Zaragoza', 'Astana',
+    ],
+  },
+  {
+    id: 'hist-assassinated',
+    category: 'history',
+    prompt: 'Which heads of state or government were assassinated?',
+    answers: [
+      'Julius Caesar|Caesar', 'Abraham Lincoln|Lincoln',
+      'Indira Gandhi', 'Rajiv Gandhi', 'Anwar Sadat|Sadat',
+      'Yitzhak Rabin|Rabin', 'Olof Palme|Palme', 'Park Chung-hee',
+      'Patrice Lumumba|Lumumba', 'Benazir Bhutto|Bhutto', 'Alexander II',
+      'Henry IV of France', 'William of Orange', 'Umberto I', 'Carlos I',
+      'Ngo Dinh Diem', 'Spencer Perceval|Perceval',
+      'Alexander I of Yugoslavia', 'Shinzo Abe', 'Michael Collins',
+      'Luis Carrero Blanco', 'James Garfield|Garfield',
+      'William McKinley|McKinley', 'John F. Kennedy|Kennedy|JFK',
+    ],
+  },
+  {
+    id: 'hist-revolutions',
+    category: 'history',
+    prompt: 'Name as many revolutions as you can.',
+    noise: ['Revolution'],
+    answers: [
+      'French', 'American', 'Russian', 'Haitian', 'Mexican',
+      'Xinhai|Chinese', 'Cuban', 'Iranian', 'Glorious', 'July', 'February',
+      'October', 'Velvet', 'Carnation', 'Orange', 'Rose', 'Industrial',
+      'Young Turk', 'Meiji Restoration|Meiji', 'Sandinista', 'Hungarian',
+      'Bolshevik', 'Texas', 'Belgian', 'Greek War of Independence',
+    ],
+  },
+  {
+    id: 'hist-ancient-battles',
+    category: 'history',
+    prompt: 'Name as many battles of antiquity as you can.',
+    noise: ['Battle of'],
+    answers: [
+      'Marathon', 'Thermopylae', 'Salamis', 'Plataea', 'Gaugamela', 'Issus',
+      'Granicus', 'Cannae', 'Zama', 'Actium', 'Pharsalus', 'Philippi',
+      'Alesia', 'Teutoburg Forest', 'Adrianople', 'Chalons',
+      'Milvian Bridge', 'Leuctra', 'Mantinea', 'Chaeronea', 'Hydaspes',
+      'Carrhae', 'Kadesh', 'Megiddo', 'Thapsus', 'Munda', 'Cynoscephalae',
+      'Magnesia', 'Pydna', 'Sphacteria',
+    ],
+  },
+  {
+    id: 'hist-mongol-khans',
+    category: 'history',
+    prompt: 'Name as many Mongol khans as you can.',
+    answers: [
+      'Genghis Khan|Genghis|Temujin', 'Ogedei|Ogedei Khan',
+      'Guyuk|Guyuk Khan', 'Mongke|Mongke Khan', 'Kublai Khan|Kublai',
+      'Batu Khan|Batu', 'Hulagu|Hulagu Khan', 'Berke|Berke Khan',
+      'Tolui', 'Jochi', 'Chagatai', 'Toghon Temur',
+    ],
+  },
+  {
+    id: 'hist-royal-houses',
+    category: 'history',
+    prompt: 'Name as many royal houses of Europe as you can.',
+    noise: ['House of'],
+    answers: [
+      'Habsburg', 'Bourbon', 'Hohenzollern', 'Romanov', 'Windsor', 'Hanover',
+      'Stuart', 'Tudor', 'Plantagenet', 'Valois', 'Capet', 'Savoy',
+      'Braganza', 'Wittelsbach', 'Wettin', 'Oldenburg', 'Orange-Nassau',
+      'Vasa', 'Jagiellon', 'Trastamara', 'Bernadotte', 'Glucksburg',
+      'Saxe-Coburg and Gotha', 'York', 'Lancaster', 'Hohenstaufen',
+      'Normandy',
+    ],
+  },
+  {
+    id: 'hist-cold-war-crises',
+    category: 'history',
+    prompt: 'Name as many flashpoints of the Cold War as you can.',
+    answers: [
+      'Berlin Blockade', 'Berlin Wall', 'Cuban Missile Crisis',
+      'Korean War', 'Vietnam War', 'Hungarian Uprising', 'Prague Spring',
+      'Suez Crisis', 'U-2 Incident', 'Bay of Pigs', 'Able Archer',
+      'Soviet invasion of Afghanistan|Afghanistan',
+      'Taiwan Strait Crisis', 'Congo Crisis', 'Yom Kippur War',
+      'Greek Civil War', 'Angolan Civil War', 'Space Race',
+    ],
+  },
+  {
+    id: 'hist-scientific-revolution',
+    category: 'history',
+    prompt: 'Who were the figures of the Scientific Revolution?',
+    answers: [
+      'Nicolaus Copernicus|Copernicus', 'Galileo Galilei|Galileo',
+      'Johannes Kepler|Kepler', 'Isaac Newton|Newton',
+      'Francis Bacon|Bacon', 'Rene Descartes|Descartes',
+      'Robert Boyle|Boyle', 'Robert Hooke|Hooke',
+      'Christiaan Huygens|Huygens', 'William Harvey|Harvey',
+      'Andreas Vesalius|Vesalius', 'Tycho Brahe|Brahe',
+      'Antonie van Leeuwenhoek|Leeuwenhoek', 'Edmond Halley|Halley',
+      'Blaise Pascal|Pascal', 'Gottfried Leibniz|Leibniz',
+      'William Gilbert|Gilbert', 'Evangelista Torricelli|Torricelli',
+      'John Napier|Napier', 'Paracelsus',
+    ],
+  },
+  {
+    id: 'hist-abolitionists',
+    category: 'history',
+    prompt: 'Name as many figures of the movement to abolish slavery as you can.',
+    answers: [
+      'Frederick Douglass|Douglass', 'Harriet Tubman|Tubman',
+      'William Lloyd Garrison|Garrison', 'Sojourner Truth',
+      'John Brown', 'Harriet Beecher Stowe|Stowe',
+      'Wendell Phillips|Phillips', 'Lucretia Mott|Mott',
+      'Angelina Grimke', 'Sarah Grimke', 'Henry Highland Garnet|Garnet',
+      'David Walker', 'William Wilberforce|Wilberforce',
+      'Thomas Clarkson|Clarkson', 'Olaudah Equiano|Equiano',
+      'Granville Sharp', 'Levi Coffin', 'Lydia Maria Child',
+      'Theodore Weld', 'Elijah Lovejoy',
+    ],
+  },
+
   /* --------------------------------------------------------------- LITERATURE */
   {
     id: 'lit-dostoevsky',
     category: 'literature',
-    prompt: 'Name as many novels by Fyodor Dostoevsky as you can.',
+    prompt: 'Which novels did Dostoevsky write?',
     answers: [
       'Crime and Punishment|Prestupleniye i nakazaniye',
       'The Brothers Karamazov|Brothers Karamazov|Bratya Karamazovy',
@@ -783,7 +1143,7 @@ const PROMPTS = [
   {
     id: 'lit-morrison',
     category: 'literature',
-    prompt: 'Name as many novels by Toni Morrison as you can.',
+    prompt: 'Which novels did Toni Morrison write?',
     answers: [
       'The Bluest Eye', 'Sula', 'Song of Solomon', 'Tar Baby', 'Beloved', 'Jazz',
       'Paradise', 'Love', 'A Mercy', 'Home', 'God Help the Child',
@@ -826,7 +1186,7 @@ const PROMPTS = [
   {
     id: 'lit-dante-circles',
     category: 'literature',
-    prompt: 'Name as many of the nine circles of Dante’s Inferno as you can.',
+    prompt: 'Dante’s Inferno descends through nine circles. Name as many as you can.',
     answers: [
       'Limbo', 'Lust', 'Gluttony', 'Greed|Avarice', 'Wrath|Anger',
       'Heresy', 'Violence', 'Fraud', 'Treachery|Treason|Betrayal',
@@ -835,7 +1195,7 @@ const PROMPTS = [
   {
     id: 'lit-moby-dick',
     category: 'literature',
-    prompt: 'Name as many characters from Moby-Dick as you can.',
+    prompt: 'Who sails aboard the Pequod?',
     answers: [
       'Ishmael', 'Captain Ahab|Ahab', 'Queequeg', 'Starbuck', 'Stubb', 'Flask',
       'Tashtego', 'Daggoo', 'Pip', 'Fedallah', 'Father Mapple|Mapple',
@@ -846,7 +1206,7 @@ const PROMPTS = [
   {
     id: 'lit-sophocles',
     category: 'literature',
-    prompt: 'Name as many surviving plays by Sophocles as you can.',
+    prompt: 'Seven plays by Sophocles survive complete. Name as many as you can.',
     note: 'Seven of some 120 survive complete.',
     answers: [
       'Oedipus Rex|Oedipus the King|Oedipus Tyrannus',
@@ -869,7 +1229,7 @@ const PROMPTS = [
   {
     id: 'lit-bronte',
     category: 'literature',
-    prompt: 'Name as many novels by the Brontë sisters as you can.',
+    prompt: 'Which novels did the Brontë sisters write?',
     answers: [
       'Jane Eyre', 'Wuthering Heights', 'Agnes Grey',
       'The Tenant of Wildfell Hall', 'Villette', 'Shirley', 'The Professor',
@@ -902,7 +1262,7 @@ const PROMPTS = [
   {
     id: 'lit-latin-american-nobel',
     category: 'literature',
-    prompt: 'Name as many Latin American winners of the Nobel Prize in Literature as you can.',
+    prompt: 'Which Latin Americans have won the Nobel Prize in Literature?',
     note: 'Six.',
     answers: [
       'Gabriela Mistral|Mistral', 'Miguel Angel Asturias|Asturias',
@@ -948,7 +1308,7 @@ const PROMPTS = [
   {
     id: 'lit-hamlet-characters',
     category: 'literature',
-    prompt: 'Name as many characters in Hamlet as you can.',
+    prompt: 'Who appears in Hamlet?',
     answers: [
       'Hamlet', 'Claudius', 'Gertrude', 'Ophelia', 'Polonius', 'Laertes',
       'Horatio', 'Rosencrantz', 'Guildenstern', 'Fortinbras', 'Osric',
@@ -1035,7 +1395,7 @@ const PROMPTS = [
   {
     id: 'lit-dystopias',
     category: 'literature',
-    prompt: 'Name as many dystopian novels as you can.',
+    prompt: 'Which novels imagine a dystopia?',
     answers: [
       'Nineteen Eighty-Four|1984', 'Brave New World', 'Fahrenheit 451', 'We',
       'The Handmaid’s Tale', 'A Clockwork Orange', 'Never Let Me Go',
@@ -1087,11 +1447,204 @@ const PROMPTS = [
     ],
   },
 
+  {
+    id: 'lit-pen-names',
+    category: 'literature',
+    prompt: 'Which authors are better known by a pen name?',
+    note: 'Either the pen name or the real one counts.',
+    answers: [
+      'Mark Twain|Samuel Clemens', 'George Orwell|Eric Blair',
+      'George Eliot|Mary Ann Evans', 'Lewis Carroll|Charles Dodgson',
+      'Pablo Neruda|Ricardo Reyes', 'Joseph Conrad|Jozef Korzeniowski',
+      'Voltaire|Francois-Marie Arouet', 'Moliere|Jean-Baptiste Poquelin',
+      'Stendhal|Marie-Henri Beyle', 'Saki|Hector Hugh Munro',
+      'O. Henry|William Sydney Porter', 'Isak Dinesen|Karen Blixen',
+      'Novalis|Georg von Hardenberg', 'Ayn Rand|Alisa Rosenbaum',
+      'Currer Bell', 'Ellis Bell', 'Acton Bell', 'Elena Ferrante',
+      'Lewis Grassic Gibbon', 'Anatole France',
+    ],
+  },
+  {
+    id: 'lit-unfinished',
+    category: 'literature',
+    prompt: 'Some of the best-known books were never finished. Name as many as you can.',
+    answers: [
+      'The Canterbury Tales|Canterbury Tales',
+      'The Mystery of Edwin Drood|Edwin Drood', 'The Trial', 'The Castle',
+      'Amerika', 'Sanditon', 'The Man Without Qualities',
+      'Bouvard et Pecuchet', 'Dead Souls', 'The Last Tycoon', 'Billy Budd',
+      'The Faerie Queene', 'Don Juan', 'Kubla Khan', 'The Aeneid|Aeneid',
+      'Weir of Hermiston', 'The Pale King', 'Suite Francaise',
+      'The Watsons', 'The Original of Laura', 'Wives and Daughters',
+    ],
+  },
+  {
+    id: 'lit-fictional-places',
+    category: 'literature',
+    prompt: 'Name as many invented places from literature as you can.',
+    answers: [
+      'Utopia', 'Lilliput', 'Brobdingnag', 'Narnia', 'Middle-earth',
+      'Oz', 'Wonderland', 'Yoknapatawpha', 'Macondo', 'Gilead', 'Erewhon',
+      'Shangri-La', 'Xanadu', 'Lake Wobegon', 'Gormenghast', 'Wessex',
+      'Barsetshire', 'Flatland', 'Laputa', 'Thornfield', 'Manderley',
+      'Arrakis', 'Pemberley', 'Coketown', 'Eldorado',
+    ],
+  },
+  {
+    id: 'lit-greek-lyric-poets',
+    category: 'literature',
+    prompt: 'Alexandrian scholars canonised nine lyric poets. Name as many Greek lyric poets as you can.',
+    answers: [
+      'Sappho', 'Pindar', 'Alcaeus', 'Anacreon', 'Simonides', 'Bacchylides',
+      'Ibycus', 'Alcman', 'Stesichorus', 'Archilochus', 'Hipponax',
+      'Tyrtaeus', 'Mimnermus', 'Theognis', 'Solon', 'Corinna',
+    ],
+  },
+  {
+    id: 'lit-detectives',
+    category: 'literature',
+    prompt: 'Who are the great detectives of literature?',
+    answers: [
+      'Sherlock Holmes|Holmes', 'Hercule Poirot|Poirot', 'Miss Marple|Marple',
+      'C. Auguste Dupin|Dupin', 'Father Brown', 'Philip Marlowe|Marlowe',
+      'Sam Spade', 'Lord Peter Wimsey|Wimsey', 'Inspector Maigret|Maigret',
+      'Nero Wolfe', 'Sergeant Cuff', 'Inspector Bucket',
+      'Inspector Morse|Morse', 'Mike Hammer', 'Lew Archer',
+      'Kurt Wallander|Wallander', 'Cadfael', 'Kinsey Millhone',
+    ],
+  },
+  {
+    id: 'lit-epistolary',
+    category: 'literature',
+    prompt: 'Which novels are told in letters or documents?',
+    answers: [
+      'Pamela', 'Clarissa', 'Dracula', 'Frankenstein',
+      'Les Liaisons dangereuses|Dangerous Liaisons',
+      'The Sorrows of Young Werther|Werther', 'Humphry Clinker', 'Evelina',
+      'The Color Purple', 'Poor Folk', 'Lady Susan',
+      'The Screwtape Letters', 'We Need to Talk About Kevin',
+      'The Moonstone', 'Flowers for Algernon', 'Gilead',
+    ],
+  },
+  {
+    id: 'lit-narrative-poems',
+    category: 'literature',
+    prompt: 'Name as many narrative poems as you can.',
+    answers: [
+      'The Rime of the Ancient Mariner|Ancient Mariner',
+      'The Charge of the Light Brigade', 'The Song of Hiawatha|Hiawatha',
+      'Evangeline', 'Paul Revere’s Ride', 'The Raven', 'Goblin Market',
+      'Eugene Onegin', 'Don Juan', 'Childe Harold’s Pilgrimage|Childe Harold',
+      'The Lady of Shalott', 'Idylls of the King', 'Sohrab and Rustum',
+      'The Wreck of the Hesperus', 'John Brown’s Body', 'Aurora Leigh',
+      'The Prelude', 'Marmion', 'The Eve of St. Agnes',
+    ],
+  },
+  {
+    id: 'lit-american-playwrights',
+    category: 'literature',
+    prompt: 'Name as many American playwrights as you can.',
+    answers: [
+      'Eugene O’Neill|O’Neill', 'Tennessee Williams',
+      'Arthur Miller|Miller', 'Lorraine Hansberry|Hansberry',
+      'August Wilson', 'Edward Albee|Albee', 'Thornton Wilder|Wilder',
+      'David Mamet|Mamet', 'Sam Shepard|Shepard',
+      'Lillian Hellman|Hellman', 'Clifford Odets|Odets',
+      'Wendy Wasserstein|Wasserstein', 'Tony Kushner|Kushner',
+      'Suzan-Lori Parks', 'Neil Simon', 'Paula Vogel', 'Amiri Baraka',
+      'Thornton Niven Wilder',
+    ],
+  },
+  {
+    id: 'lit-irish-writers',
+    category: 'literature',
+    prompt: 'Name as many Irish writers as you can.',
+    answers: [
+      'James Joyce|Joyce', 'W. B. Yeats|Yeats', 'Samuel Beckett|Beckett',
+      'Oscar Wilde|Wilde', 'George Bernard Shaw|Shaw',
+      'Jonathan Swift|Swift', 'Seamus Heaney|Heaney',
+      'J. M. Synge|Synge', 'Sean O’Casey|O’Casey',
+      'Flann O’Brien', 'Edna O’Brien', 'Elizabeth Bowen|Bowen',
+      'Bram Stoker|Stoker', 'Richard Brinsley Sheridan|Sheridan',
+      'Oliver Goldsmith|Goldsmith', 'Louis MacNeice|MacNeice',
+      'Colm Toibin', 'Anne Enright', 'Maria Edgeworth|Edgeworth',
+      'Patrick Kavanagh|Kavanagh', 'John Banville|Banville',
+    ],
+  },
+  {
+    id: 'lit-poetic-forms',
+    category: 'literature',
+    prompt: 'Name as many poetic forms as you can.',
+    answers: [
+      'Sonnet', 'Villanelle', 'Sestina', 'Haiku', 'Ode', 'Elegy', 'Ballad',
+      'Limerick', 'Pantoum', 'Ghazal', 'Rondeau', 'Triolet', 'Terza rima',
+      'Blank verse', 'Free verse', 'Epigram', 'Aubade', 'Eclogue', 'Tanka',
+      'Cinquain', 'Acrostic', 'Clerihew', 'Ballade', 'Sapphic stanza',
+      'Spenserian stanza', 'Ottava rima', 'Rondel',
+    ],
+  },
+  {
+    id: 'lit-metrical-feet',
+    category: 'literature',
+    prompt: 'Name as many metrical feet as you can.',
+    answers: [
+      'Iamb', 'Trochee', 'Dactyl', 'Anapest', 'Spondee', 'Pyrrhic',
+      'Amphibrach', 'Cretic|Amphimacer', 'Tribrach', 'Molossus', 'Bacchius',
+      'Antibacchius', 'Choriamb',
+    ],
+  },
+  {
+    id: 'lit-german-writers',
+    category: 'literature',
+    prompt: 'Name as many German-language writers as you can.',
+    answers: [
+      'Johann Wolfgang von Goethe|Goethe', 'Friedrich Schiller|Schiller',
+      'Franz Kafka|Kafka', 'Thomas Mann', 'Hermann Hesse|Hesse',
+      'Bertolt Brecht|Brecht', 'Rainer Maria Rilke|Rilke',
+      'Gunter Grass|Grass', 'Heinrich Boll|Boll',
+      'Friedrich Holderlin|Holderlin', 'Novalis', 'Heinrich Heine|Heine',
+      'Heinrich von Kleist|Kleist', 'Georg Buchner|Buchner',
+      'Theodor Fontane|Fontane', 'Robert Musil|Musil',
+      'Stefan Zweig|Zweig', 'Paul Celan|Celan', 'W. G. Sebald|Sebald',
+      'Peter Handke|Handke', 'Elfriede Jelinek|Jelinek',
+      'E. T. A. Hoffmann|Hoffmann', 'Gotthold Lessing|Lessing',
+      'Alfred Doblin|Doblin', 'Erich Maria Remarque|Remarque',
+    ],
+  },
+  {
+    id: 'lit-literary-magazines',
+    category: 'literature',
+    prompt: 'Name as many literary magazines as you can.',
+    answers: [
+      'The New Yorker', 'The Paris Review', 'Poetry', 'The Atlantic',
+      'Harper’s', 'Granta', 'n+1', 'McSweeney’s',
+      'The Kenyon Review', 'The Sewanee Review', 'Ploughshares',
+      'The Believer', 'Tin House', 'Transition', 'The Dial',
+      'The Little Review', 'Blast', 'The Criterion', 'Partisan Review',
+      'The Yellow Book', 'The Hudson Review', 'Zoetrope',
+    ],
+  },
+  {
+    id: 'lit-bildungsroman',
+    category: 'literature',
+    prompt: 'Name as many coming-of-age novels as you can.',
+    answers: [
+      'Great Expectations', 'Jane Eyre', 'David Copperfield',
+      'A Portrait of the Artist as a Young Man|Portrait of the Artist',
+      'The Catcher in the Rye', 'Huckleberry Finn',
+      'Wilhelm Meister’s Apprenticeship|Wilhelm Meister',
+      'Sons and Lovers', 'The Bell Jar', 'Invisible Man',
+      'Go Tell It on the Mountain', 'Bless Me Ultima',
+      'The House on Mango Street', 'Siddhartha', 'Demian', 'Little Women',
+      'A Tree Grows in Brooklyn', 'Black Boy', 'Kim', 'Emma',
+    ],
+  },
+
   /* ------------------------------------------------------------------ SCIENCE */
   {
     id: 'sci-noble-gases',
     category: 'science',
-    prompt: 'Name as many of the noble gases as you can.',
+    prompt: 'Which elements are the noble gases?',
     answers: ['Helium', 'Neon', 'Argon', 'Krypton', 'Xenon', 'Radon', 'Oganesson'],
   },
   {
@@ -1113,7 +1666,7 @@ const PROMPTS = [
   {
     id: 'sci-alkali-metals',
     category: 'science',
-    prompt: 'Name as many of the alkali metals as you can.',
+    prompt: 'Which elements are the alkali metals?',
     answers: [
       'Lithium', 'Sodium|Natrium', 'Potassium|Kalium', 'Rubidium',
       'Cesium|Caesium', 'Francium',
@@ -1122,7 +1675,7 @@ const PROMPTS = [
   {
     id: 'sci-leptons',
     category: 'science',
-    prompt: 'Name as many of the six leptons of the Standard Model as you can.',
+    prompt: 'The Standard Model counts six leptons. Name as many as you can.',
     answers: [
       'Electron', 'Muon', 'Tau|Tau lepton|Tauon',
       'Electron neutrino', 'Muon neutrino', 'Tau neutrino',
@@ -1143,7 +1696,7 @@ const PROMPTS = [
   {
     id: 'sci-si-base-units',
     category: 'science',
-    prompt: 'Name as many of the seven SI base units as you can.',
+    prompt: 'What are the seven SI base units?',
     answers: [
       'Metre|Meter', 'Kilogram', 'Second', 'Ampere|Amp', 'Kelvin', 'Mole', 'Candela',
     ],
@@ -1151,7 +1704,7 @@ const PROMPTS = [
   {
     id: 'sci-quarks',
     category: 'science',
-    prompt: 'Name as many of the six quark flavours as you can.',
+    prompt: 'Six flavours of quark, in three generations. Name as many as you can.',
     answers: [
       'Up', 'Down', 'Charm', 'Strange', 'Top|Truth', 'Bottom|Beauty',
     ],
@@ -1169,7 +1722,7 @@ const PROMPTS = [
   {
     id: 'sci-mohs-scale',
     category: 'science',
-    prompt: 'Name as many minerals of the Mohs hardness scale as you can.',
+    prompt: 'The Mohs scale runs from talc to diamond. Name as many of its minerals as you can.',
     answers: [
       'Talc', 'Gypsum', 'Calcite', 'Fluorite', 'Apatite',
       'Orthoclase|Orthoclase feldspar|Feldspar', 'Quartz', 'Topaz',
@@ -1189,7 +1742,7 @@ const PROMPTS = [
   {
     id: 'sci-mitosis',
     category: 'science',
-    prompt: 'Name as many stages of mitosis as you can.',
+    prompt: 'What are the stages of mitosis?',
     note: 'Cytokinesis counts; interphase does not.',
     answers: [
       'Prophase', 'Prometaphase', 'Metaphase', 'Anaphase', 'Telophase', 'Cytokinesis',
@@ -1198,7 +1751,7 @@ const PROMPTS = [
   {
     id: 'sci-platonic-solids',
     category: 'science',
-    prompt: 'Name as many of the five Platonic solids as you can.',
+    prompt: 'What are the five Platonic solids?',
     answers: [
       'Tetrahedron', 'Cube|Hexahedron', 'Octahedron', 'Dodecahedron', 'Icosahedron',
     ],
@@ -1221,7 +1774,7 @@ const PROMPTS = [
   {
     id: 'sci-bright-stars',
     category: 'science',
-    prompt: 'Name as many of the brightest stars in the night sky as you can.',
+    prompt: 'Which stars shine brightest in the night sky?',
     answers: [
       'Sirius', 'Canopus', 'Arcturus', 'Alpha Centauri|Rigil Kentaurus', 'Vega',
       'Capella', 'Rigel', 'Procyon', 'Achernar', 'Betelgeuse', 'Hadar|Beta Centauri',
@@ -1232,7 +1785,7 @@ const PROMPTS = [
   {
     id: 'sci-elements-after-people',
     category: 'science',
-    prompt: 'Name as many chemical elements named after people as you can.',
+    prompt: 'Which chemical elements are named after people?',
     answers: [
       'Curium', 'Einsteinium', 'Fermium', 'Mendelevium', 'Nobelium',
       'Lawrencium', 'Rutherfordium', 'Seaborgium', 'Bohrium', 'Meitnerium',
@@ -1264,7 +1817,7 @@ const PROMPTS = [
   {
     id: 'sci-carpals',
     category: 'science',
-    prompt: 'Name as many of the eight carpal bones as you can.',
+    prompt: 'Eight small bones make up the wrist. Name as many carpals as you can.',
     answers: [
       'Scaphoid', 'Lunate', 'Triquetrum', 'Pisiform', 'Trapezium', 'Trapezoid',
       'Capitate', 'Hamate',
@@ -1299,7 +1852,7 @@ const PROMPTS = [
   {
     id: 'sci-carbon-allotropes',
     category: 'science',
-    prompt: 'Name as many allotropes of carbon as you can.',
+    prompt: 'Carbon takes many forms. Name as many allotropes as you can.',
     answers: [
       'Diamond', 'Graphite', 'Graphene',
       'Fullerene|Buckminsterfullerene|Buckyball', 'Carbon nanotube|Nanotube',
@@ -1310,7 +1863,7 @@ const PROMPTS = [
   {
     id: 'sci-crystal-systems',
     category: 'science',
-    prompt: 'Name as many of the seven crystal systems as you can.',
+    prompt: 'What are the seven crystal systems?',
     answers: [
       'Cubic|Isometric', 'Tetragonal', 'Orthorhombic', 'Hexagonal',
       'Trigonal|Rhombohedral', 'Monoclinic', 'Triclinic',
@@ -1363,7 +1916,7 @@ const PROMPTS = [
   {
     id: 'sci-greenhouse-gases',
     category: 'science',
-    prompt: 'Name as many greenhouse gases as you can.',
+    prompt: 'Which gases trap heat in the atmosphere?',
     answers: [
       'Carbon dioxide|CO2', 'Methane|CH4', 'Nitrous oxide|N2O',
       'Water vapour|Water vapor', 'Ozone|O3',
@@ -1381,6 +1934,187 @@ const PROMPTS = [
       'Supercritical fluid', 'Superfluid', 'Degenerate matter',
       'Quark-gluon plasma', 'Fermionic condensate', 'Supersolid',
       'Liquid crystal',
+    ],
+  },
+
+  {
+    id: 'sci-si-prefixes',
+    category: 'science',
+    prompt: 'Name as many SI prefixes as you can.',
+    answers: [
+      'Quetta', 'Ronna', 'Yotta', 'Zetta', 'Exa', 'Peta', 'Tera', 'Giga',
+      'Mega', 'Kilo', 'Hecto', 'Deca', 'Deci', 'Centi', 'Milli', 'Micro',
+      'Nano', 'Pico', 'Femto', 'Atto', 'Zepto', 'Yocto', 'Ronto', 'Quecto',
+    ],
+  },
+  {
+    id: 'sci-linnaean-ranks',
+    category: 'science',
+    prompt: 'Name as many ranks of biological classification as you can.',
+    answers: [
+      'Domain', 'Kingdom', 'Phylum', 'Class', 'Order', 'Family', 'Genus',
+      'Species', 'Subspecies', 'Tribe', 'Division', 'Superfamily', 'Subphylum',
+    ],
+  },
+  {
+    id: 'sci-animal-phyla',
+    category: 'science',
+    prompt: 'Name as many phyla of the animal kingdom as you can.',
+    answers: [
+      'Chordata', 'Arthropoda', 'Mollusca', 'Annelida', 'Nematoda',
+      'Platyhelminthes', 'Cnidaria', 'Porifera', 'Echinodermata', 'Rotifera',
+      'Bryozoa', 'Brachiopoda', 'Tardigrada', 'Nemertea', 'Ctenophora',
+      'Onychophora', 'Hemichordata', 'Nematomorpha',
+    ],
+  },
+  {
+    id: 'sci-insect-orders',
+    category: 'science',
+    prompt: 'Name as many orders of insects as you can.',
+    answers: [
+      'Coleoptera', 'Lepidoptera', 'Diptera', 'Hymenoptera', 'Hemiptera',
+      'Orthoptera', 'Odonata', 'Blattodea', 'Isoptera', 'Siphonaptera',
+      'Dermaptera', 'Ephemeroptera', 'Trichoptera', 'Neuroptera', 'Mantodea',
+      'Phasmatodea', 'Plecoptera', 'Thysanoptera', 'Psocoptera',
+      'Phthiraptera',
+    ],
+  },
+  {
+    id: 'sci-named-curves',
+    category: 'science',
+    prompt: 'Name as many named plane curves as you can.',
+    answers: [
+      'Cycloid', 'Cardioid', 'Lemniscate', 'Astroid', 'Catenary',
+      'Witch of Agnesi', 'Folium of Descartes', 'Cissoid', 'Conchoid',
+      'Archimedean spiral', 'Logarithmic spiral', 'Limacon', 'Epicycloid',
+      'Hypocycloid', 'Tractrix', 'Nephroid', 'Deltoid', 'Lituus',
+      'Strophoid', 'Involute', 'Rose curve', 'Trochoid',
+    ],
+  },
+  {
+    id: 'sci-eponymous-laws',
+    category: 'science',
+    prompt: 'A great many physical laws carry somebody’s name. Name as many as you can.',
+    answers: [
+      'Newton’s laws of motion|Newton', 'Boyle’s law|Boyle',
+      'Charles’s law|Charles', 'Hooke’s law|Hooke',
+      'Ohm’s law|Ohm', 'Coulomb’s law|Coulomb',
+      'Faraday’s law|Faraday', 'Lenz’s law|Lenz',
+      'Ampere’s law|Ampere', 'Gauss’s law|Gauss',
+      'Kepler’s laws|Kepler', 'Snell’s law|Snell',
+      'Bernoulli’s principle|Bernoulli', 'Pascal’s law|Pascal',
+      'Archimedes’ principle|Archimedes', 'Avogadro’s law|Avogadro',
+      'Dalton’s law|Dalton', 'Henry’s law|Henry',
+      'Raoult’s law|Raoult', 'Graham’s law|Graham',
+      'Wien’s displacement law|Wien', 'Planck’s law|Planck',
+      'Stefan-Boltzmann law|Stefan', 'Hubble’s law|Hubble',
+      'Curie’s law|Curie', 'Bragg’s law|Bragg',
+      'Beer-Lambert law|Beer', 'Fick’s law|Fick',
+      'Fourier’s law|Fourier',
+    ],
+  },
+  {
+    id: 'sci-famous-experiments',
+    category: 'science',
+    prompt: 'Name as many famous experiments as you can.',
+    noise: ['experiment'],
+    answers: [
+      'Michelson-Morley', 'Double-slit', 'Millikan oil drop|Oil drop',
+      'Rutherford gold foil|Gold foil', 'Stern-Gerlach', 'Cavendish',
+      'Galileo’s inclined plane|Inclined plane', 'Pavlov’s dogs|Pavlov',
+      'Milgram', 'Stanford prison', 'Miller-Urey', 'Meselson-Stahl',
+      'Hershey-Chase', 'Griffith', 'Avery-MacLeod-McCarty',
+      'Luria-Delbruck', 'Joule’s paddle wheel', 'Torricelli',
+      'Oersted', 'Eddington eclipse', 'Franklin’s kite', 'Libet',
+      'Eratosthenes',
+    ],
+  },
+  {
+    id: 'sci-eye-parts',
+    category: 'science',
+    prompt: 'What are the parts of the human eye?',
+    answers: [
+      'Cornea', 'Iris', 'Pupil', 'Lens', 'Retina', 'Sclera', 'Choroid',
+      'Vitreous humour|Vitreous body', 'Aqueous humour', 'Fovea',
+      'Optic disc|Blind spot', 'Ciliary body', 'Conjunctiva', 'Macula',
+      'Rods', 'Cones', 'Optic nerve', 'Zonule',
+    ],
+  },
+  {
+    id: 'sci-glycolysis',
+    category: 'science',
+    prompt: 'Name as many intermediates of glycolysis as you can.',
+    answers: [
+      'Glucose', 'Glucose-6-phosphate', 'Fructose-6-phosphate',
+      'Fructose-1,6-bisphosphate', 'Dihydroxyacetone phosphate|DHAP',
+      'Glyceraldehyde-3-phosphate|G3P',
+      '1,3-bisphosphoglycerate', '3-phosphoglycerate', '2-phosphoglycerate',
+      'Phosphoenolpyruvate|PEP', 'Pyruvate',
+    ],
+  },
+  {
+    id: 'sci-space-missions',
+    category: 'science',
+    prompt: 'Name as many space missions or probes as you can.',
+    answers: [
+      'Apollo', 'Voyager 1', 'Voyager 2', 'Pioneer 10', 'Pioneer 11',
+      'Cassini', 'Galileo', 'Juno', 'New Horizons', 'Curiosity',
+      'Perseverance', 'Opportunity', 'Spirit', 'Sojourner', 'Viking',
+      'Mariner', 'Magellan', 'Rosetta', 'Philae', 'Hayabusa', 'OSIRIS-REx',
+      'Parker Solar Probe|Parker', 'Kepler', 'Hubble', 'James Webb',
+      'Chandra', 'Spitzer', 'Sputnik', 'Vostok', 'Gemini', 'Soyuz', 'Luna',
+      'Change|Chang’e', 'Dawn', 'MESSENGER', 'Ulysses', 'InSight',
+      'Mars Express', 'BepiColombo', 'Cassini-Huygens|Huygens',
+    ],
+  },
+  {
+    id: 'sci-math-constants',
+    category: 'science',
+    prompt: 'Name as many mathematical constants as you can.',
+    answers: [
+      'Pi', 'e|Euler’s number', 'Golden ratio|Phi',
+      'Square root of two|Pythagoras’s constant',
+      'Euler-Mascheroni constant|Gamma', 'Catalan’s constant',
+      'Apery’s constant', 'Feigenbaum constants', 'Khinchin’s constant',
+      'Imaginary unit', 'Tau', 'Liouville’s number',
+      'Champernowne constant', 'Silver ratio', 'Conway’s constant',
+      'Glaisher-Kinkelin constant', 'Plastic number',
+    ],
+  },
+  {
+    id: 'sci-named-after-euler',
+    category: 'science',
+    prompt: 'Euler put his name on a staggering amount of mathematics. Name as many things named after him as you can.',
+    promptOn: [{ on: 'Euler', say: 'Euler what?' }],
+    answers: [
+      'Euler’s identity', 'Euler’s formula', 'Euler characteristic',
+      'Euler angles', 'Euler’s number', 'Euler line',
+      'Euler’s totient function|Totient function', 'Eulerian path',
+      'Euler-Lagrange equation', 'Euler’s theorem', 'Euler disk',
+      'Euler spiral', 'Euler brick', 'Euler’s criterion',
+      'Euler diagram', 'Euler method', 'Euler’s sum of powers conjecture',
+      'Euler-Mascheroni constant', 'Euler’s equations',
+    ],
+  },
+  {
+    id: 'sci-white-blood-cells',
+    category: 'science',
+    prompt: 'Name as many kinds of white blood cell as you can.',
+    answers: [
+      'Neutrophil', 'Lymphocyte', 'Monocyte', 'Eosinophil', 'Basophil',
+      'Macrophage', 'Dendritic cell', 'Natural killer cell|NK cell',
+      'T cell', 'B cell', 'Plasma cell', 'Mast cell',
+    ],
+  },
+  {
+    id: 'sci-igneous-rocks',
+    category: 'science',
+    prompt: 'Name as many igneous rocks as you can.',
+    answers: [
+      'Granite', 'Basalt', 'Gabbro', 'Diorite', 'Andesite', 'Rhyolite',
+      'Obsidian', 'Pumice', 'Peridotite', 'Syenite', 'Dacite', 'Tuff',
+      'Scoria', 'Dunite', 'Pegmatite', 'Kimberlite', 'Monzonite', 'Aplite',
+      'Anorthosite',
     ],
   },
 
@@ -1407,7 +2141,7 @@ const PROMPTS = [
   {
     id: 'arts-verdi-operas',
     category: 'arts',
-    prompt: 'Name as many operas by Giuseppe Verdi as you can.',
+    prompt: 'Which operas did Verdi write?',
     answers: [
       'Rigoletto', 'La traviata', 'Aida', 'Otello', 'Falstaff', 'Nabucco',
       'Il trovatore', 'Macbeth', 'Don Carlos|Don Carlo', 'La forza del destino',
@@ -1459,7 +2193,7 @@ const PROMPTS = [
   {
     id: 'arts-les-six',
     category: 'arts',
-    prompt: 'Name as many members of Les Six as you can.',
+    prompt: 'Who were Les Six?',
     answers: [
       'Darius Milhaud|Milhaud', 'Arthur Honegger|Honegger', 'Francis Poulenc|Poulenc',
       'Georges Auric|Auric', 'Louis Durey|Durey', 'Germaine Tailleferre|Tailleferre',
@@ -1469,7 +2203,7 @@ const PROMPTS = [
   {
     id: 'arts-holst-planets',
     category: 'arts',
-    prompt: 'Name as many movements of Holst’s The Planets as you can.',
+    prompt: 'Holst gave The Planets seven movements. Name as many as you can.',
     note: 'Seven; Earth is absent and Pluto had not been found.',
     answers: [
       'Mars|Mars the Bringer of War', 'Venus|Venus the Bringer of Peace',
@@ -1481,7 +2215,7 @@ const PROMPTS = [
   {
     id: 'arts-mighty-handful',
     category: 'arts',
-    prompt: 'Name as many composers of The Mighty Handful as you can.',
+    prompt: 'Who were The Mighty Handful?',
     note: 'Also called The Five, or the Moguchaya Kuchka.',
     answers: [
       'Mily Balakirev|Balakirev', 'Alexander Borodin|Borodin',
@@ -1542,7 +2276,7 @@ const PROMPTS = [
   {
     id: 'arts-wright-buildings',
     category: 'arts',
-    prompt: 'Name as many buildings designed by Frank Lloyd Wright as you can.',
+    prompt: 'Which buildings did Frank Lloyd Wright design?',
     answers: [
       'Fallingwater|Kaufmann Residence',
       'Guggenheim Museum|Solomon R. Guggenheim Museum',
@@ -1596,7 +2330,7 @@ const PROMPTS = [
   {
     id: 'arts-pictures-exhibition',
     category: 'arts',
-    prompt: 'Name as many movements of Pictures at an Exhibition as you can.',
+    prompt: 'Mussorgsky wrote it for piano and Ravel orchestrated it. Name as many movements of Pictures at an Exhibition as you can.',
     note: 'Mussorgsky’s suite, written for piano and orchestrated by Ravel.',
     answers: [
       'Promenade', 'Gnomus|The Gnome',
@@ -1639,7 +2373,7 @@ const PROMPTS = [
   {
     id: 'arts-requiem-composers',
     category: 'arts',
-    prompt: 'Name as many composers who wrote a Requiem as you can.',
+    prompt: 'Which composers wrote a Requiem?',
     answers: [
       'Wolfgang Amadeus Mozart|Mozart', 'Giuseppe Verdi|Verdi',
       'Johannes Brahms|Brahms', 'Gabriel Faure|Faure',
@@ -1774,11 +2508,211 @@ const PROMPTS = [
     ],
   },
 
+  {
+    id: 'arts-school-of-athens',
+    category: 'arts',
+    prompt: 'Raphael crowded dozens of thinkers onto one wall of the Vatican. Which philosophers appear in The School of Athens?',
+    answers: [
+      'Plato', 'Aristotle', 'Socrates', 'Pythagoras', 'Euclid', 'Ptolemy',
+      'Diogenes', 'Heraclitus', 'Zeno', 'Epicurus', 'Averroes', 'Hypatia',
+      'Alcibiades', 'Parmenides', 'Plotinus', 'Xenophon', 'Apelles',
+      'Protogenes', 'Zoroaster', 'Anaximander',
+    ],
+  },
+  {
+    id: 'arts-printmaking',
+    category: 'arts',
+    prompt: 'Name as many printmaking techniques as you can.',
+    answers: [
+      'Woodcut', 'Engraving', 'Etching', 'Drypoint', 'Aquatint', 'Mezzotint',
+      'Lithography', 'Screenprinting|Silkscreen', 'Linocut', 'Monotype',
+      'Collagraph', 'Chine-colle', 'Intaglio', 'Relief printing',
+      'Woodblock printing', 'Photogravure', 'Sugar lift',
+    ],
+  },
+  {
+    id: 'arts-opera-houses',
+    category: 'arts',
+    prompt: 'Name as many great opera houses as you can.',
+    answers: [
+      'La Scala', 'Metropolitan Opera|the Met', 'Royal Opera House|Covent Garden',
+      'Vienna State Opera', 'Paris Opera|Palais Garnier', 'Bolshoi Theatre|Bolshoi',
+      'Mariinsky Theatre|Mariinsky', 'Teatro Colon', 'Sydney Opera House',
+      'La Fenice', 'Teatro di San Carlo|San Carlo',
+      'Bayreuth Festspielhaus|Bayreuth', 'Semperoper', 'Liceu',
+      'Teatro Real', 'Glyndebourne', 'Deutsche Oper',
+      'Hungarian State Opera', 'Massimo',
+    ],
+  },
+  {
+    id: 'arts-percussion',
+    category: 'arts',
+    prompt: 'Name as many percussion instruments as you can.',
+    answers: [
+      'Timpani|Kettledrums', 'Snare drum', 'Bass drum', 'Cymbals', 'Triangle',
+      'Tambourine', 'Xylophone', 'Marimba', 'Vibraphone', 'Glockenspiel',
+      'Celesta', 'Tubular bells|Chimes', 'Gong', 'Tam-tam', 'Castanets',
+      'Woodblock', 'Temple blocks', 'Claves', 'Maracas', 'Guiro', 'Cowbell',
+      'Tabla', 'Djembe', 'Taiko', 'Bodhran', 'Cajon', 'Whip|Slapstick',
+    ],
+  },
+  {
+    id: 'arts-brass',
+    category: 'arts',
+    prompt: 'Which instruments make up the brass section?',
+    answers: [
+      'Trumpet', 'Trombone', 'French horn|Horn', 'Tuba', 'Cornet',
+      'Flugelhorn', 'Euphonium', 'Baritone horn', 'Sousaphone',
+      'Piccolo trumpet', 'Bass trombone', 'Wagner tuba', 'Bugle', 'Alphorn',
+      'Serpent', 'Ophicleide', 'Mellophone', 'Saxhorn',
+    ],
+  },
+  {
+    id: 'arts-conductors',
+    category: 'arts',
+    prompt: 'Name as many conductors as you can.',
+    answers: [
+      'Herbert von Karajan|Karajan', 'Leonard Bernstein|Bernstein',
+      'Arturo Toscanini|Toscanini', 'Wilhelm Furtwangler|Furtwangler',
+      'Georg Solti|Solti', 'Claudio Abbado|Abbado',
+      'Carlos Kleiber|Kleiber', 'Simon Rattle|Rattle',
+      'Gustavo Dudamel|Dudamel', 'Marin Alsop|Alsop',
+      'Pierre Boulez|Boulez', 'Otto Klemperer|Klemperer',
+      'Bruno Walter', 'Eugene Ormandy|Ormandy', 'Fritz Reiner|Reiner',
+      'George Szell|Szell', 'Seiji Ozawa|Ozawa',
+      'Valery Gergiev|Gergiev', 'Riccardo Muti|Muti',
+      'Esa-Pekka Salonen|Salonen', 'Leopold Stokowski|Stokowski',
+      'Antal Dorati|Dorati',
+    ],
+  },
+  {
+    id: 'arts-museums',
+    category: 'arts',
+    prompt: 'Name as many great art museums as you can.',
+    answers: [
+      'Louvre', 'Uffizi', 'Prado', 'Rijksmuseum', 'Hermitage',
+      'Metropolitan Museum of Art|the Met', 'National Gallery', 'Tate',
+      'Museum of Modern Art|MoMA', 'Guggenheim', 'Musee d’Orsay|Orsay',
+      'Vatican Museums', 'British Museum', 'Art Institute of Chicago',
+      'Getty', 'Kunsthistorisches Museum|Kunsthistorisches',
+      'Alte Pinakothek', 'Mauritshuis', 'Frick Collection|Frick',
+      'Courtauld', 'Reina Sofia', 'Pergamon Museum|Pergamon',
+      'Isabella Stewart Gardner Museum|Gardner', 'Thyssen-Bornemisza',
+    ],
+  },
+  {
+    id: 'arts-ukiyo-e',
+    category: 'arts',
+    prompt: 'Name as many Japanese woodblock print artists as you can.',
+    answers: [
+      'Katsushika Hokusai|Hokusai', 'Utagawa Hiroshige|Hiroshige',
+      'Kitagawa Utamaro|Utamaro', 'Toshusai Sharaku|Sharaku',
+      'Suzuki Harunobu|Harunobu', 'Torii Kiyonaga|Kiyonaga',
+      'Utagawa Kuniyoshi|Kuniyoshi', 'Utagawa Kunisada|Kunisada',
+      'Keisai Eisen|Eisen', 'Tsukioka Yoshitoshi|Yoshitoshi',
+      'Kawase Hasui|Hasui', 'Katsukawa Shunsho|Shunsho',
+      'Utagawa Toyokuni|Toyokuni', 'Hishikawa Moronobu|Moronobu',
+    ],
+  },
+  {
+    id: 'arts-dances',
+    category: 'arts',
+    prompt: 'Name as many named dances as you can.',
+    answers: [
+      'Waltz', 'Tango', 'Flamenco', 'Polka', 'Mazurka', 'Bolero', 'Fandango',
+      'Gavotte', 'Minuet', 'Sarabande', 'Gigue', 'Allemande', 'Courante',
+      'Pavane', 'Galliard', 'Czardas', 'Hornpipe', 'Jig', 'Reel',
+      'Tarantella', 'Kathak', 'Bharatanatyam', 'Hula', 'Samba', 'Rumba',
+      'Foxtrot', 'Quadrille', 'Habanera', 'Polonaise', 'Siciliana',
+    ],
+  },
+  {
+    id: 'arts-sculptors',
+    category: 'arts',
+    prompt: 'Name as many sculptors as you can.',
+    answers: [
+      'Michelangelo', 'Gian Lorenzo Bernini|Bernini', 'Auguste Rodin|Rodin',
+      'Donatello', 'Lorenzo Ghiberti|Ghiberti', 'Antonio Canova|Canova',
+      'Praxiteles', 'Phidias', 'Myron',
+      'Alberto Giacometti|Giacometti', 'Henry Moore',
+      'Barbara Hepworth|Hepworth', 'Constantin Brancusi|Brancusi',
+      'Alexander Calder|Calder', 'Louise Bourgeois|Bourgeois',
+      'Claes Oldenburg|Oldenburg', 'Richard Serra|Serra',
+      'Anish Kapoor|Kapoor', 'Isamu Noguchi|Noguchi',
+      'Camille Claudel|Claudel', 'Augustus Saint-Gaudens|Saint-Gaudens',
+      'Daniel Chester French', 'Benvenuto Cellini|Cellini', 'Verrocchio',
+    ],
+  },
+  {
+    id: 'arts-architects',
+    category: 'arts',
+    prompt: 'Name as many architects as you can.',
+    answers: [
+      'Frank Lloyd Wright', 'Le Corbusier',
+      'Ludwig Mies van der Rohe|Mies van der Rohe', 'Walter Gropius|Gropius',
+      'Zaha Hadid|Hadid', 'Frank Gehry|Gehry', 'I. M. Pei|Pei',
+      'Louis Sullivan|Sullivan', 'Antoni Gaudi|Gaudi',
+      'Filippo Brunelleschi|Brunelleschi', 'Andrea Palladio|Palladio',
+      'Christopher Wren|Wren', 'Louis Kahn|Kahn', 'Alvar Aalto|Aalto',
+      'Oscar Niemeyer|Niemeyer', 'Renzo Piano', 'Norman Foster|Foster',
+      'Rem Koolhaas|Koolhaas', 'Tadao Ando|Ando',
+      'Santiago Calatrava|Calatrava', 'Philip Johnson',
+      'Eero Saarinen|Saarinen', 'Daniel Burnham|Burnham',
+      'Charles Bulfinch|Bulfinch', 'Bramante',
+    ],
+  },
+  {
+    id: 'arts-painting-media',
+    category: 'arts',
+    prompt: 'Name as many painting media or techniques as you can.',
+    answers: [
+      'Oil paint|Oil', 'Tempera', 'Fresco', 'Watercolour|Watercolor',
+      'Gouache', 'Acrylic', 'Encaustic', 'Pastel', 'Charcoal', 'Ink wash',
+      'Grisaille', 'Sfumato', 'Chiaroscuro', 'Impasto', 'Glazing',
+      'Trompe l’oeil', 'Collage', 'Mosaic', 'Stained glass', 'Gilding',
+      'Silverpoint', 'Scumbling',
+    ],
+  },
+  {
+    id: 'arts-american-composers',
+    category: 'arts',
+    prompt: 'Name as many American composers as you can.',
+    answers: [
+      'Aaron Copland|Copland', 'Charles Ives|Ives',
+      'George Gershwin|Gershwin', 'Leonard Bernstein|Bernstein',
+      'Samuel Barber|Barber', 'John Cage|Cage', 'Philip Glass|Glass',
+      'Steve Reich|Reich', 'John Adams', 'Duke Ellington|Ellington',
+      'Scott Joplin|Joplin', 'Amy Beach', 'Florence Price',
+      'William Grant Still', 'Virgil Thomson|Thomson', 'Roy Harris',
+      'Elliott Carter|Carter', 'Morton Feldman|Feldman', 'Terry Riley',
+      'Ned Rorem|Rorem', 'Howard Hanson|Hanson', 'Walter Piston|Piston',
+      'Milton Babbitt|Babbitt',
+    ],
+  },
+  {
+    id: 'arts-russian-composers',
+    category: 'arts',
+    prompt: 'Name as many Russian composers as you can.',
+    answers: [
+      'Pyotr Tchaikovsky|Tchaikovsky', 'Sergei Rachmaninoff|Rachmaninoff',
+      'Igor Stravinsky|Stravinsky', 'Sergei Prokofiev|Prokofiev',
+      'Dmitri Shostakovich|Shostakovich', 'Modest Mussorgsky|Mussorgsky',
+      'Nikolai Rimsky-Korsakov|Rimsky-Korsakov',
+      'Alexander Borodin|Borodin', 'Mily Balakirev|Balakirev',
+      'Cesar Cui|Cui', 'Mikhail Glinka|Glinka',
+      'Alexander Scriabin|Scriabin', 'Alexander Glazunov|Glazunov',
+      'Aram Khachaturian|Khachaturian', 'Dmitry Kabalevsky|Kabalevsky',
+      'Alfred Schnittke|Schnittke', 'Sofia Gubaidulina|Gubaidulina',
+      'Sergei Taneyev|Taneyev', 'Anatoly Lyadov|Lyadov',
+      'Anton Arensky|Arensky',
+    ],
+  },
+
   /* -------------------------------------------------------- MYTH & PHILOSOPHY */
   {
     id: 'myth-olympians',
     category: 'mythphil',
-    prompt: 'Name as many of the Twelve Olympians as you can.',
+    prompt: 'Who were the Twelve Olympians?',
     note: 'Roman equivalents accepted.',
     answers: [
       'Zeus|Jupiter|Jove', 'Hera|Juno', 'Poseidon|Neptune', 'Demeter|Ceres',
@@ -1836,7 +2770,7 @@ const PROMPTS = [
   {
     id: 'myth-nine-muses',
     category: 'mythphil',
-    prompt: 'Name as many of the nine Muses as you can.',
+    prompt: 'Who were the nine Muses?',
     answers: [
       'Calliope', 'Clio', 'Erato', 'Euterpe', 'Melpomene', 'Polyhymnia',
       'Terpsichore', 'Thalia', 'Urania',
@@ -1845,7 +2779,7 @@ const PROMPTS = [
   {
     id: 'myth-labors-heracles',
     category: 'mythphil',
-    prompt: 'Name as many of the Twelve Labours of Heracles as you can.',
+    prompt: 'Heracles was set twelve labours. Name as many as you can.',
     answers: [
       'Nemean Lion', 'Lernaean Hydra|Hydra', 'Ceryneian Hind|Golden Hind',
       'Erymanthian Boar', 'Augean Stables', 'Stymphalian Birds', 'Cretan Bull',
@@ -1857,7 +2791,7 @@ const PROMPTS = [
   {
     id: 'myth-norse-realms',
     category: 'mythphil',
-    prompt: 'Name as many of the Nine Realms of Norse cosmology as you can.',
+    prompt: 'What are the Nine Realms of Norse cosmology?',
     answers: [
       'Asgard', 'Midgard', 'Jotunheim', 'Niflheim', 'Muspelheim', 'Alfheim',
       'Svartalfheim|Nidavellir', 'Vanaheim', 'Helheim',
@@ -1877,7 +2811,7 @@ const PROMPTS = [
   {
     id: 'myth-vishnu-avatars',
     category: 'mythphil',
-    prompt: 'Name as many of the ten avatars of Vishnu as you can.',
+    prompt: 'Vishnu descends in ten avatars. Name as many as you can.',
     note: 'The Dashavatara; Balarama sometimes replaces the Buddha.',
     answers: [
       'Matsya', 'Kurma', 'Varaha', 'Narasimha', 'Vamana', 'Parashurama',
@@ -1926,7 +2860,7 @@ const PROMPTS = [
   {
     id: 'myth-arthurian-knights',
     category: 'mythphil',
-    prompt: 'Name as many Knights of the Round Table as you can.',
+    prompt: 'Who sat at the Round Table?',
     answers: [
       'Lancelot', 'Gawain', 'Galahad', 'Percival|Perceval|Parzival', 'Tristan',
       'Bedivere', 'Kay', 'Bors', 'Mordred', 'Gareth', 'Gaheris', 'Lamorak',
@@ -1937,7 +2871,7 @@ const PROMPTS = [
   {
     id: 'myth-ten-plagues',
     category: 'mythphil',
-    prompt: 'Name as many of the ten plagues of Egypt as you can.',
+    prompt: 'What were the ten plagues of Egypt?',
     answers: [
       'Blood|Water turned to blood', 'Frogs', 'Lice|Gnats', 'Flies',
       'Pestilence|Murrain|Death of livestock', 'Boils', 'Hail', 'Locusts',
@@ -1947,7 +2881,7 @@ const PROMPTS = [
   {
     id: 'phil-five-pillars',
     category: 'mythphil',
-    prompt: 'Name as many of the Five Pillars of Islam as you can.',
+    prompt: 'What are the Five Pillars of Islam?',
     answers: [
       'Shahada|Profession of faith', 'Salah|Salat|Prayer',
       'Zakat|Almsgiving', 'Sawm|Fasting', 'Hajj|Pilgrimage',
@@ -1956,7 +2890,7 @@ const PROMPTS = [
   {
     id: 'myth-underworld-rivers',
     category: 'mythphil',
-    prompt: 'Name as many of the rivers of the Greek underworld as you can.',
+    prompt: 'Which rivers run through the Greek underworld?',
     answers: [
       'Styx', 'Acheron', 'Lethe', 'Phlegethon|Pyriphlegethon', 'Cocytus',
     ],
@@ -1976,7 +2910,7 @@ const PROMPTS = [
   {
     id: 'myth-argonauts',
     category: 'mythphil',
-    prompt: 'Name as many of the Argonauts as you can.',
+    prompt: 'Who sailed with Jason aboard the Argo?',
     answers: [
       'Jason', 'Heracles|Hercules', 'Orpheus', 'Castor',
       'Pollux|Polydeuces', 'Atalanta', 'Peleus', 'Theseus', 'Telamon',
@@ -2032,7 +2966,7 @@ const PROMPTS = [
   {
     id: 'myth-apostles',
     category: 'mythphil',
-    prompt: 'Name as many of the Twelve Apostles as you can.',
+    prompt: 'Who were the Twelve Apostles?',
     answers: [
       'Peter|Simon Peter', 'Andrew', 'James the Greater|James son of Zebedee',
       'John', 'Philip', 'Bartholomew|Nathanael', 'Thomas', 'Matthew|Levi',
@@ -2071,7 +3005,7 @@ const PROMPTS = [
   {
     id: 'phil-hellenistic-schools',
     category: 'mythphil',
-    prompt: 'Name as many schools of Hellenistic philosophy as you can.',
+    prompt: 'What were the schools of Hellenistic philosophy?',
     answers: [
       'Stoicism|Stoics', 'Epicureanism|Epicureans',
       'Skepticism|Pyrrhonism|Sceptics', 'Cynicism|Cynics',
@@ -2108,15 +3042,184 @@ const PROMPTS = [
   {
     id: 'myth-deadly-sins',
     category: 'mythphil',
-    prompt: 'Name as many of the Seven Deadly Sins as you can.',
+    prompt: 'What are the Seven Deadly Sins?',
     answers: [
       'Pride|Vanity', 'Greed|Avarice', 'Lust', 'Envy', 'Gluttony',
       'Wrath|Anger', 'Sloth',
     ],
   },
+  {
+    id: 'myth-children-of-zeus',
+    category: 'mythphil',
+    prompt: 'Hera had reason to be furious. Name as many children of Zeus as you can.',
+    answers: [
+      'Athena', 'Apollo', 'Artemis', 'Ares', 'Hephaestus', 'Hermes',
+      'Dionysus', 'Persephone', 'Heracles|Hercules', 'Perseus',
+      'Helen of Troy|Helen', 'Castor', 'Pollux|Polydeuces', 'Minos',
+      'Rhadamanthus', 'Sarpedon', 'Aeacus', 'Hebe', 'Eileithyia',
+      'the Muses|Muses', 'the Fates|Moirai', 'the Graces|Charites',
+      'Tantalus', 'Dardanus', 'Zethus', 'Amphion', 'Epaphus',
+    ],
+  },
+  {
+    id: 'myth-trojan-war',
+    category: 'mythphil',
+    prompt: 'Name as many figures of the Trojan War as you can.',
+    answers: [
+      'Achilles', 'Hector', 'Agamemnon', 'Menelaus', 'Odysseus', 'Paris',
+      'Helen', 'Priam', 'Hecuba', 'Andromache', 'Ajax', 'Diomedes', 'Nestor',
+      'Patroclus', 'Cassandra', 'Aeneas', 'Briseis', 'Chryseis', 'Calchas',
+      'Philoctetes', 'Neoptolemus', 'Sarpedon', 'Glaucus', 'Thersites',
+      'Laocoon', 'Polyxena', 'Iphigenia', 'Clytemnestra', 'Teucer',
+      'Idomeneus',
+    ],
+  },
+  {
+    id: 'myth-odyssey-obstacles',
+    category: 'mythphil',
+    prompt: 'What stood between Odysseus and Ithaca?',
+    answers: [
+      'Polyphemus|the Cyclops|Cyclops', 'Circe', 'the Sirens|Sirens',
+      'Scylla', 'Charybdis', 'Calypso', 'the Lotus-Eaters|Lotus-Eaters',
+      'the Laestrygonians|Laestrygonians', 'Aeolus',
+      'the Cattle of Helios|Cattle of Helios', 'the Underworld|Hades',
+      'Poseidon', 'the Suitors|Suitors', 'Nausicaa',
+    ],
+  },
+  {
+    id: 'myth-roman-gods',
+    category: 'mythphil',
+    prompt: 'Name as many Roman gods as you can.',
+    answers: [
+      'Jupiter', 'Juno', 'Neptune', 'Minerva', 'Mars', 'Venus', 'Vulcan',
+      'Mercury', 'Diana', 'Apollo', 'Ceres', 'Bacchus', 'Vesta', 'Pluto',
+      'Saturn', 'Janus', 'Quirinus', 'Bellona', 'Flora', 'Faunus',
+      'Fortuna', 'Terminus', 'Cupid', 'Aurora', 'Somnus', 'Proserpina',
+    ],
+  },
+  {
+    id: 'myth-mesoamerican-gods',
+    category: 'mythphil',
+    prompt: 'Name as many Aztec or Maya gods as you can.',
+    answers: [
+      'Quetzalcoatl', 'Tezcatlipoca', 'Huitzilopochtli', 'Tlaloc',
+      'Coatlicue', 'Xipe Totec', 'Mictlantecuhtli', 'Xochiquetzal',
+      'Tonatiuh', 'Kukulkan', 'Itzamna', 'Chaac', 'Ah Puch', 'Ix Chel',
+      'Hunab Ku', 'Camazotz', 'Hun Hunahpu', 'Xbalanque',
+    ],
+  },
+  {
+    id: 'myth-orishas',
+    category: 'mythphil',
+    prompt: 'Name as many Yoruba orishas as you can.',
+    answers: [
+      'Shango', 'Ogun', 'Oshun', 'Yemoja|Yemaya', 'Obatala',
+      'Eshu|Elegua', 'Oya', 'Olokun', 'Orunmila', 'Osanyin',
+      'Babalu Aye', 'Oba', 'Aganju', 'Olodumare', 'Erinle',
+    ],
+  },
+  {
+    id: 'myth-slavic',
+    category: 'mythphil',
+    prompt: 'Name as many figures of Slavic mythology as you can.',
+    answers: [
+      'Perun', 'Veles', 'Svarog', 'Dazhbog', 'Mokosh', 'Lada', 'Morana',
+      'Rod', 'Stribog', 'Baba Yaga', 'Domovoi', 'Rusalka', 'Leshy',
+      'Vodyanoy', 'Zorya', 'Chernobog', 'Belobog', 'Koschei', 'Firebird',
+      'Simargl',
+    ],
+  },
+  {
+    id: 'myth-polynesian',
+    category: 'mythphil',
+    prompt: 'Name as many figures of Polynesian mythology as you can.',
+    answers: [
+      'Maui', 'Pele', 'Kane', 'Ku', 'Lono', 'Kanaloa', 'Hina', 'Tangaroa',
+      'Tane', 'Rangi', 'Papa', 'Tu', 'Rongo', 'Haumea', 'Namaka',
+      'Hiiaka', 'Tawhirimatea', 'Whiro', 'Tawhaki',
+    ],
+  },
+  {
+    id: 'phil-branches',
+    category: 'mythphil',
+    prompt: 'What are the branches of philosophy?',
+    answers: [
+      'Metaphysics', 'Epistemology', 'Ethics', 'Logic', 'Aesthetics',
+      'Political philosophy', 'Philosophy of mind', 'Philosophy of language',
+      'Philosophy of science', 'Phenomenology', 'Ontology', 'Axiology',
+      'Philosophy of religion', 'Teleology', 'Cosmology', 'Hermeneutics',
+      'Philosophy of mathematics', 'Meta-ethics',
+    ],
+  },
+  {
+    id: 'phil-ethical-theories',
+    category: 'mythphil',
+    prompt: 'Name as many ethical theories as you can.',
+    answers: [
+      'Utilitarianism', 'Deontology', 'Virtue ethics', 'Consequentialism',
+      'Contractarianism', 'Ethical egoism', 'Moral relativism',
+      'Divine command theory', 'Natural law', 'Care ethics', 'Hedonism',
+      'Pragmatism', 'Emotivism', 'Moral nihilism', 'Prima facie duties',
+      'Rule utilitarianism', 'Act utilitarianism', 'Moral realism',
+      'Error theory', 'Situation ethics',
+    ],
+  },
+  {
+    id: 'phil-islamic',
+    category: 'mythphil',
+    prompt: 'Name as many philosophers of the Islamic world as you can.',
+    answers: [
+      'Avicenna|Ibn Sina', 'Averroes|Ibn Rushd', 'Al-Ghazali',
+      'Al-Farabi', 'Al-Kindi', 'Ibn Khaldun', 'Ibn Tufail', 'Ibn Arabi',
+      'Al-Razi', 'Suhrawardi', 'Mulla Sadra', 'Ibn Bajja', 'Al-Biruni',
+      'Nasir al-Din al-Tusi', 'Ibn Taymiyyah',
+    ],
+  },
+  {
+    id: 'phil-medieval',
+    category: 'mythphil',
+    prompt: 'Name as many medieval philosophers as you can.',
+    answers: [
+      'Thomas Aquinas|Aquinas', 'Augustine|Saint Augustine', 'Anselm',
+      'Peter Abelard|Abelard', 'Duns Scotus', 'William of Ockham|Ockham',
+      'Albertus Magnus', 'Boethius', 'Peter Lombard', 'Roger Bacon',
+      'Bonaventure', 'Maimonides', 'Eriugena', 'Siger of Brabant',
+      'Jean Buridan|Buridan', 'Nicholas of Cusa', 'Gersonides',
+      'Hildegard of Bingen|Hildegard',
+    ],
+  },
+  {
+    id: 'phil-women',
+    category: 'mythphil',
+    prompt: 'Which women have shaped philosophy?',
+    answers: [
+      'Hypatia', 'Simone de Beauvoir|de Beauvoir', 'Hannah Arendt|Arendt',
+      'Simone Weil|Weil', 'Mary Wollstonecraft|Wollstonecraft',
+      'Elizabeth Anscombe|Anscombe', 'Iris Murdoch|Murdoch',
+      'Martha Nussbaum|Nussbaum', 'Judith Butler|Butler',
+      'Philippa Foot|Foot', 'Susanne Langer|Langer', 'Edith Stein',
+      'Christine de Pizan', 'Anne Conway', 'Mary Midgley|Midgley',
+      'Luce Irigaray|Irigaray', 'Julia Kristeva|Kristeva',
+      'Margaret Cavendish|Cavendish', 'bell hooks', 'Angela Davis',
+    ],
+  },
+  {
+    id: 'phil-buddhist-concepts',
+    category: 'mythphil',
+    prompt: 'Name as many core concepts of Buddhism as you can.',
+    answers: [
+      'Four Noble Truths', 'Eightfold Path', 'Nirvana', 'Samsara', 'Karma',
+      'Dharma', 'Dukkha', 'Anatta|No-self', 'Anicca|Impermanence',
+      'Sunyata|Emptiness', 'Bodhisattva', 'Arhat', 'Sangha',
+      'Three Jewels|Triple Gem', 'Five Precepts', 'Middle Way',
+      'Skandhas|Aggregates', 'Paramitas', 'Zazen', 'Koan', 'Satori',
+      'Mindfulness|Sati', 'Tanha',
+    ],
+  },
+
 ];
 
-/* Twenty-six authored days, used by DAILY mode. Day 1 is DAILY_EPOCH; after the
+/* Forty authored days, used by DAILY mode. Day 1 is DAILY_EPOCH; after the
  * list runs out it cycles, so append sets here to extend the calendar. Each day
  * takes one prompt per category, with Myth & Philosophy displacing a slot every
  * few days. */
@@ -2147,6 +3250,20 @@ const DAILY_SETS = [
   ['geo-hawaiian-islands', 'hist-wwii-operations', 'lit-japanese-authors', 'sci-greenhouse-gases', 'arts-movements'],
   ['geo-ocean-trenches', 'hist-hanseatic-cities', 'lit-lost-generation', 'sci-carpals', 'myth-hebrew-prophets'],
   ['geo-multiple-capitals', 'lit-shakespeare-histories', 'sci-states-of-matter', 'arts-gaudi', 'myth-underworld-rivers'],
+  ['geo-equator', 'lit-pen-names', 'sci-alkali-metals', 'hist-soviet-leaders', 'arts-verdi-operas'],
+  ['geo-year-of-africa', 'lit-unfinished', 'sci-leptons', 'hist-five-good-emperors', 'myth-plato'],
+  ['geo-named-after-people', 'lit-fictional-places', 'sci-si-prefixes', 'arts-mozart-operas', 'myth-norse'],
+  ['geo-former-countries', 'lit-greek-lyric-poets', 'sci-linnaean-ranks', 'hist-thirteen-colonies', 'arts-hudson-river'],
+  ['geo-canals', 'lit-detectives', 'sci-animal-phyla', 'hist-seven-hills', 'myth-nietzsche'],
+  ['geo-peninsulas', 'lit-epistolary', 'sci-insect-orders', 'arts-les-six', 'myth-norse-realms'],
+  ['geo-highest-capitals', 'lit-narrative-poems', 'sci-named-curves', 'hist-renaissance-city-states', 'arts-wright-buildings'],
+  ['geo-transcontinental', 'lit-american-playwrights', 'sci-eponymous-laws', 'hist-wwi-battles', 'phil-presocratics'],
+  ['geo-deltas', 'lit-irish-writers', 'sci-famous-experiments', 'arts-bebop', 'phil-aristotle-works'],
+  ['geo-endorheic', 'lit-poetic-forms', 'sci-eye-parts', 'hist-plains-nations', 'arts-pictures-exhibition'],
+  ['geo-pacific-nations', 'lit-metrical-feet', 'sci-glycolysis', 'hist-presidents-sec-state', 'phil-fallacies'],
+  ['geo-megacities', 'lit-german-writers', 'sci-space-missions', 'arts-requiem-composers', 'myth-arthurian-knights'],
+  ['geo-state-capitals', 'lit-literary-magazines', 'sci-math-constants', 'hist-women-rulers', 'arts-tempo-markings'],
+  ['geo-mediterranean-seas', 'lit-bildungsroman', 'sci-named-after-euler', 'hist-popes-20c', 'myth-ten-plagues'],
 ];
 
 /* Day 1 of SIXTEEN, in local time. */
