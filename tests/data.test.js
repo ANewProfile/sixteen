@@ -298,6 +298,21 @@ ok(J('arts-ballets', 'La Sylphide').index !== J('arts-ballets', 'Les Sylphides')
    'La Sylphide and Les Sylphides are different ballets');
 ok(J('geo-tectonic-plates', 'North American Plate').index
    !== J('geo-tectonic-plates', 'South American Plate').index, 'the American plates stay apart');
+ok(J('geo-states-named-after-people', 'North Carolina').index
+   !== J('geo-states-named-after-people', 'South Carolina').index, 'both Carolinas count separately');
+ok(J('lit-euripides', 'Iphigenia in Tauris').index !== J('lit-euripides', 'Iphigenia in Aulis').index,
+   'the two Iphigenias are different plays');
+ok(J('sci-muscles', 'Biceps brachii').index !== J('sci-muscles', 'Triceps brachii').index,
+   'biceps and triceps stay apart');
+ok(J('sci-muscles', 'Pectoralis major').index !== J('sci-muscles', 'Pectoralis minor').index,
+   'pectoralis major and minor stay apart');
+ok(J('sci-muscles', 'Gluteus maximus').index !== J('sci-muscles', 'Gluteus minimus').index,
+   'gluteus maximus and minimus stay apart');
+ok(J('sci-collective-nouns', 'School of fish').index !== J('sci-collective-nouns', 'Shoal of fish').index,
+   'a school and a shoal are different nouns');
+ok(kind('hist-vps-to-president', 'George W. Bush') === 'ask', 'George W. was never vice president');
+ok(kind('hist-french-regimes', 'Sixth Republic') === 'ask', 'there is no Sixth Republic yet');
+ok(kind('myth-titans', 'Thetis') === 'miss', 'Thetis is a Nereid, not a Titan');
 ok(kind('geo-tectonic-plates', 'American Plate') === 'ask', 'which American plate?');
 
 ok(kind('geo-national-parks', 'Yosemite') === 'hit', 'a park scores');
