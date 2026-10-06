@@ -14,7 +14,7 @@ const ctx = eval(stub + data + pure + `
   ({ norm, levenshtein, answerSet, matchAnswer, judge, promptIndex, fragmentForms,
      roundScore, roundCorrect, totalScore,
      dayNumber, dailyPromptIds, infinitePromptIds, LADDER, DIST_BUCKETS, PROMPTS, CATEGORIES,
-     DAILY_SETS, PROMPT_BY_ID, CATEGORY_SLOTS })
+     DAILY_SETS, PROMPT_BY_ID, SET_SIZE })
 `);
 
 let fails = 0, checks = 0;
@@ -151,7 +151,10 @@ const seen = {};
 for (let i = 0; i < 2000; i++)
   ctx.infinitePromptIds().forEach(id => { const c = ctx.PROMPT_BY_ID[id].category; seen[c] = (seen[c]||0)+1; });
 console.log('infinite category mix over 2000 sets:', seen);
-ok(seen.mythphil > 0 && seen.mythphil < seen.geography, 'myth appears but is the rare slot');
+for (const cat of Object.keys(ctx.CATEGORIES)) {
+  const share = (seen[cat] || 0) / 2000;
+  ok(share > 0.44 && share < 0.56, `${cat} should appear in half of all sets, got ${share}`);
+}
 
 
 // ---- half-stated answers are prompted, not judged
@@ -313,6 +316,13 @@ ok(J('sci-collective-nouns', 'School of fish').index !== J('sci-collective-nouns
 ok(kind('hist-vps-to-president', 'George W. Bush') === 'ask', 'George W. was never vice president');
 ok(kind('hist-french-regimes', 'Sixth Republic') === 'ask', 'there is no Sixth Republic yet');
 ok(kind('myth-titans', 'Thetis') === 'miss', 'Thetis is a Nereid, not a Titan');
+ok(J('geo-states-ending-a', 'North Carolina').index !== J('geo-states-ending-a', 'South Carolina').index,
+   'the Carolinas again');
+ok(J('sci-acids', 'Ethanoic acid').index !== J('sci-acids', 'Methanoic acid').index,
+   'ethanoic (acetic) and methanoic (formic) are different acids');
+ok(J('hist-us-wars', 'World War I').index !== J('hist-us-wars', 'World War II').index,
+   'the world wars stay apart');
+ok(kind('lit-number-titles', 'Fahrenheit 452') === 'miss', 'numerals in titles must agree');
 ok(kind('geo-tectonic-plates', 'American Plate') === 'ask', 'which American plate?');
 
 ok(kind('geo-national-parks', 'Yosemite') === 'hit', 'a park scores');
@@ -394,7 +404,7 @@ ok(ctx.PROMPTS.filter((p) => /\. /.test(p.prompt)).length >= 15,
     if (set.some((id) => seen.has(id))) break;
     set.forEach((id) => seen.add(id));
   }
-  ok(sets >= 25, `Infinite repeated a prompt after only ${sets} sets`);
+  ok(sets >= 75, `Infinite repeated a prompt after only ${sets} sets`);
 }
 
 
@@ -493,6 +503,51 @@ ok(kind('phil-ethical-theories', 'Utilitarianism') === 'hit', 'an ethical theory
 ok(kind('phil-ethical-theories', 'Epistemology') === 'miss', 'that is a branch, not a theory');
 ok(kind('phil-islamic', 'Avicenna') === 'hit' && kind('phil-islamic', 'Ibn Sina') === 'hit',
    'both names for Avicenna score');
+
+// ---- ten categories: fine arts and myth & philosophy split, social science and pop culture added
+for (const cat of ['visual', 'music', 'mythology', 'philosophy', 'socsci', 'popculture'])
+  ok(!!ctx.CATEGORIES[cat], `${cat} is a category`);
+ok(!ctx.CATEGORIES.arts && !ctx.CATEGORIES.mythphil, 'the merged categories are gone');
+ok(ctx.PROMPT_BY_ID['arts-van-gogh'].category === 'visual', 'old arts- ids keep working as visual arts');
+ok(ctx.PROMPT_BY_ID['arts-verdi-operas'].category === 'music', 'and as music');
+ok(ctx.PROMPT_BY_ID['phil-five-pillars'].category === 'mythology', 'religion stays with mythology');
+ok(ctx.PROMPT_BY_ID['myth-plato'].category === 'philosophy', 'Plato moved to philosophy');
+ok(ctx.PROMPT_BY_ID['arts-pixar'].category === 'popculture', 'Pixar moved to pop culture');
+{
+  const counts = Object.values(perCat);
+  ok(Math.max(...counts) - Math.min(...counts) <= 10, 'categories stay roughly the same size: ' + counts);
+}
+
+ok(kind('pop-mcu', 'Iron Man 2') === 'hit', 'a numbered sequel scores');
+ok(kind('pop-mcu', 'Iron Man 4') === 'miss', 'one that was never made does not');
+ok(kind('pop-star-trek-series', 'Star Trek: Voyager') === 'hit', 'the franchise name is noise');
+ok(kind('pop-star-trek-series', 'Star Trek') === 'ask', 'which Star Trek?');
+ok(kind('pop-bond-films', 'Never Say Never Again') === 'miss', 'not an Eon film');
+ok(kind('pop-disney-princesses', 'Elsa') === 'miss', 'Elsa is not in the lineup');
+ok(kind('pop-spielberg', 'E.T.') === 'hit' && kind('pop-spielberg', 'ET') === 'hit', 'E.T. either way');
+ok(kind('socsci-scotus-cases', 'Roe vs Wade') === 'hit', 'v. and vs. are the same');
+ok(kind('socsci-econ-nobel', 'Diamond') === 'ask', 'which Diamond?');
+ok(kind('socsci-econ-nobel', 'Keynes') === 'miss', 'Keynes died before the prize existed');
+ok(kind('socsci-cognitive-biases', 'Confirmation bias') === 'hit', 'the word bias is noise');
+ok(kind('socsci-generations', 'Gen X') === 'hit', 'Gen X is Generation X');
+ok(kind('socsci-opec', 'Qatar') === 'miss', 'Qatar left OPEC');
+ok(kind('mus-modes', 'Lydian') === 'hit', 'a mode scores');
+ok(kind('mus-dynamics', 'ff') === 'hit', 'the abbreviation scores');
+ok(J('mus-intervals', 'Minor third').index !== J('mus-intervals', 'Major third').index,
+   'major and minor thirds are different intervals');
+ok(kind('vis-classical-orders', 'Doric order') === 'hit', 'the word order is noise');
+ok(kind('vis-classical-orders', 'Gothic') === 'miss', 'Gothic is not a classical order');
+ok(kind('myth-pleiades', 'Electra') === 'hit', 'a Pleiad scores');
+ok(J('myth-volsungs', 'Sigmund').index === J('myth-volsungs', 'Siegmund').index,
+   'Sigmund and Siegmund are the same man');
+ok(kind('phil-five-ways', 'Argument from motion') === 'hit', 'the argument-from prefix is noise');
+ok(kind('phil-syllogisms', 'Barbara') === 'hit', 'the first syllogism scores');
+ok(J('phil-syllogisms', 'Celarent').index !== J('phil-syllogisms', 'Celaront').index,
+   'Celarent and Celaront are different moods');
+ok(J('socsci-ocracies', 'Matriarchy').index !== J('socsci-ocracies', 'Patriarchy').index,
+   'matriarchy and patriarchy stay apart');
+ok(J('socsci-scripts', 'Linear A').index !== J('socsci-scripts', 'Linear B').index,
+   'Linear A and Linear B stay apart');
 
 console.log(`\n${checks - fails}/${checks} checks passed`);
 process.exit(fails ? 1 : 0);

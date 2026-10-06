@@ -249,13 +249,22 @@ function dailyPromptIds(day) {
  * holds back 150, about the last thirty sets. */
 const RECENT_MEMORY = Math.max(25, Math.round(PROMPTS.length * 0.6));
 
-/* An infinite set keeps one prompt per category slot, with Myth & Philosophy
- * occasionally displacing history, literature, or fine arts. */
-function infinitePromptIds() {
-  const slots = CATEGORY_SLOTS.slice();
-  if (Math.random() < 0.4) {
-    slots[SWAPPABLE_SLOTS[Math.floor(Math.random() * SWAPPABLE_SLOTS.length)]] = 'mythphil';
+/* An infinite set takes SET_SIZE categories chosen uniformly without
+ * replacement, so every category is equally likely to appear, then one prompt
+ * from each. */
+function infiniteCategories() {
+  const all = Object.keys(CATEGORIES);
+  const pick = all.slice();
+  for (let i = pick.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pick[i], pick[j]] = [pick[j], pick[i]];
   }
+  const chosen = new Set(pick.slice(0, SET_SIZE));
+  return all.filter((c) => chosen.has(c));
+}
+
+function infinitePromptIds() {
+  const slots = infiniteCategories();
   const recent = read(K_RECENT, []);
   const ids = slots.map((cat) => {
     const pool = PROMPTS.filter((p) => p.category === cat);

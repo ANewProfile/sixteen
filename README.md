@@ -1,14 +1,16 @@
 # SIXTEEN
 
-A daily quiz bowl game. Five prompts a day, one per category, five answers apiece.
+A daily quiz bowl game. Five prompts a day, each from a different category, five answers apiece.
 
 Correct answers compound — **1, 2, 4, 8, 16** points — and every miss costs **2**.
 Three right and two wrong nets zero, so knowing when to stop is the game.
 Eighty points is a perfect day.
 
-Prompts are drawn from the canon that actually shows up at an NAQT tournament:
-geography, history, literature, science, and fine arts, with myth and philosophy
-turning up now and then. No pop culture, no sports.
+There are ten categories: geography, history, literature, science, visual arts,
+music, mythology, philosophy, social science and pop culture. Most of it is the
+canon that actually shows up at an NAQT tournament, with pop culture for a
+lighter turn. Each set of five draws its categories at random, so any one
+category turns up in exactly half of all sets.
 
 ## A day's worth of prompts
 
@@ -20,9 +22,10 @@ turning up now and then. No pop culture, no sports.
 >
 > 🔬 **Science** — Euler put his name on a staggering amount of mathematics. Name as many things named after him as you can.
 >
-> 🎼 **Fine Arts** — Raphael crowded dozens of thinkers onto one wall of the Vatican. Which philosophers appear in The School of Athens?
->
-> 🏺 **Myth & Philosophy** — Name as many philosophical thought experiments as you can.
+> 🎨 **Visual Arts** — Raphael crowded dozens of thinkers onto one wall of the Vatican. Which philosophers appear in The School of Athens?
+
+Other days bring 🎼 **Music**, 🏺 **Mythology**, 🦉 **Philosophy**, 📊 **Social
+Science** or 🎬 **Pop Culture** in place of some of these.
 
 Prompts come in three shapes — a direct question, a lead-in and an instruction,
 or the plain "name as many" form — and ask for all sorts of things: the
@@ -39,7 +42,7 @@ exist.
   spoiler-free block of squares to copy and share.
 - **Infinite** — a freshly assembled set of five, as often as you like. Recently
   seen prompts are held back in proportion to the size of the library, so you can
-  play about thirty consecutive sets — over 150 prompts — before anything
+  play about ninety consecutive sets (some 450 prompts) before anything
   repeats.
 
 Everything is stored in `localStorage` on your own device. There is no backend,
@@ -77,10 +80,10 @@ file keeps Pages from running the files through Jekyll.
 > suite enforces, and a worked example. What follows is the summary.
 
 
-`assets/data.js` holds everything: 250 prompts over six categories, and forty
-authored days. Day 41 wraps back to day 1's set, so the calendar cycles until you
-add more. Fifty prompts sit outside the calendar and are reached only through
-Infinite mode.
+`assets/data.js` holds everything: 760 prompts over ten categories, about 75
+apiece, and seventy-four authored days. Day 75 wraps back to day 1's set, so the
+calendar cycles until you add more. Nearly 400 prompts sit outside the calendar
+and are reached only through Infinite mode.
 
 A prompt looks like this:
 
@@ -149,7 +152,7 @@ rather than penalised. Several prompts use it: `Trench`, `Plate`, `Lake`,
 empties an answer — the test suite checks every answer in every prompt keeps at
 least one key.
 
-A day is five prompt ids, one per category:
+A day is five prompt ids, no two from the same category:
 
 ```js
 const DAILY_SETS = [

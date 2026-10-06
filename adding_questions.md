@@ -38,24 +38,35 @@ DAILY puzzle.
 
 | Location | What it holds |
 |---|---|
-| `assets/data.js:13` | `CATEGORIES` — the six categories, their display names and emoji |
-| `assets/data.js:24` | `CATEGORY_SLOTS` and `SWAPPABLE_SLOTS` — how INFINITE builds a set |
-| `assets/data.js:27` | `PROMPTS` — every prompt, grouped by category under banner comments |
+| `assets/data.js:13` | `CATEGORIES` — the ten categories, their display names and emoji |
+| `assets/data.js:29` | `SET_SIZE` — how many categories INFINITE draws per set |
+| `assets/data.js:31` | `PROMPTS` — every prompt, grouped by category under banner comments |
 | `assets/data.js` (near the end) | `DAILY_SETS` — the calendar, one array of five ids per day |
-| `assets/data.js:2153` | `DAILY_EPOCH` — the local date that is day 1 |
+| `assets/data.js:10921` | `DAILY_EPOCH` — the local date that is day 1 |
 
 Inside `PROMPTS`, find the banner comment for your category and add your prompt
 there. The grouping is cosmetic — nothing breaks if a prompt is in the "wrong"
 place — but keep it tidy.
 
 ```
-GEOGRAPHY          data.js:28
-HISTORY            data.js:367
-LITERATURE         data.js:749
-SCIENCE            data.js:1090
-FINE ARTS          data.js:1387
-MYTH & PHILOSOPHY  data.js:1777
+GEOGRAPHY                 data.js:32
+HISTORY                   data.js:938
+LITERATURE                data.js:1997
+SCIENCE                   data.js:3078
+VISUAL ARTS & MUSIC       data.js:4063    the original arts- prompts, now split by category
+MYTHOLOGY & PHILOSOPHY    data.js:5185    the original myth- and phil- prompts, now split
+VISUAL ARTS               data.js:6174
+MUSIC                     data.js:6975
+MYTHOLOGY                 data.js:7621
+PHILOSOPHY                data.js:7955
+SOCIAL SCIENCE            data.js:8702
+POP CULTURE               data.js:9775
 ```
+
+The two older blocks predate the split. Each prompt in them carries its own
+`category`, and its id keeps the old `arts-`, `myth-` or `phil-` prefix because
+ids are never renamed. New prompts use the prefixes `vis-`, `mus-`, `myth-`,
+`phil-`, `socsci-` and `pop-`, and go in the matching new block.
 
 ---
 
@@ -77,7 +88,7 @@ MYTH & PHILOSOPHY  data.js:1777
 | Field | Required | What it does |
 |---|---|---|
 | `id` | yes | Unique across all prompts. Convention: `category-topic`, kebab-case. Used by `DAILY_SETS` and saved into players' browsers, so **never rename an id** once it has been scheduled. |
-| `category` | yes | A key of `CATEGORIES`: `geography`, `history`, `literature`, `science`, `arts`, `mythphil`. |
+| `category` | yes | A key of `CATEGORIES`: `geography`, `history`, `literature`, `science`, `visual`, `music`, `mythology`, `philosophy`, `socsci`, `popculture`. |
 | `prompt` | yes | The question. Must end with the words **`as you can.`** — the test suite enforces it. |
 | `note` | no | One short italic line under the question. Use it to state a count, resolve an ambiguity, or warn off a near-miss. |
 | `answers` | yes | At least **five** entries. Each is `'Canonical\|alias\|alias'`. |
@@ -378,8 +389,8 @@ reported as already counted and does not consume one of the five slots.
 
 ## Scheduling a day
 
-`DAILY_SETS` (`assets/data.js:2123`) is an array of days. Each day is five
-prompt ids, **one per category, no category twice**:
+`DAILY_SETS` (`assets/data.js:10843`) is an array of days. Each day is five
+prompt ids, **no category twice**:
 
 ```js
 const DAILY_SETS = [
@@ -393,11 +404,11 @@ Day *N* uses set `(N − 1) % DAILY_SETS.length`, so the calendar cycles once it
 runs out. Day 1 is `DAILY_EPOCH`, currently `[2026, 9, 3]` — note the month is
 **zero-based**, so that is 3 October 2026.
 
-The convention in this repo, across the 26 days as they currently stand:
-geography, literature and science appear on every single day, while the remaining
-two slots rotate among history (22 days), fine arts (17) and myth & philosophy
-(13). Nothing enforces that pattern beyond "five distinct categories", so vary
-it as you like.
+The 74 days written so far date from when there were six categories, so
+geography, literature and science appear on every one and the other two slots
+rotate among history and the arts, mythology and philosophy prompts. None of
+them uses social science or pop culture yet. New days should spread across all
+ten categories; nothing enforces a pattern beyond "five distinct categories".
 
 > **Append; do not reorder.** A finished DAILY is cached in the player's browser
 > along with the prompt ids they saw. Rearranging existing days means a player
@@ -415,35 +426,37 @@ and look for ids reported as `Infinite only` by `node tests/try.js <id>`.
 
 ### How INFINITE picks
 
-`infinitePromptIds()` builds a set from `CATEGORY_SLOTS` — geography, history,
-literature, science, arts — then, 40% of the time, replaces one of slots 1, 2 or
-4 (history, literature, arts) with myth & philosophy. It picks one prompt per
-slot at random, holding back everything the player has seen recently.
+`infinitePromptIds()` draws `SET_SIZE` (five) distinct categories uniformly at
+random from all ten in `CATEGORIES` and shows them in the order `CATEGORIES`
+lists them. Every category therefore appears in exactly half of all sets. It
+then picks one prompt per category at random, holding back everything the
+player has seen recently.
 
 That holdback is `RECENT_MEMORY`, which scales with the library
-(`Math.max(25, Math.round(PROMPTS.length * 0.6))` — 150 at 250 prompts). The
-practical effect, measured by the suite: about thirty consecutive sets, over 150
-prompts, before anything repeats. **Every prompt you add widens that window
+(`Math.max(25, Math.round(PROMPTS.length * 0.6))`, 456 at 760 prompts). The
+practical effect, measured by the suite: about ninety consecutive sets before
+anything repeats. Keep the categories roughly the same size (the suite allows a
+spread of ten prompts), because a small category runs out of fresh prompts
+first. **Every prompt you add widens that window
 automatically**, and you register nothing for a prompt to appear here.
 
 ---
 
 ## Adding a new category
 
-Three edits:
+Two edits:
 
 1. Add an entry to `CATEGORIES` (`assets/data.js:13`) with a `name` and an
    `icon` emoji. The icon appears in the UI and in the shareable result squares.
-2. Decide how it reaches players: add it to `CATEGORY_SLOTS` to make it one of
-   the five fixed daily slots (which means demoting one of the current five), or
-   add its index to `SWAPPABLE_SLOTS` to make it an occasional guest like myth &
-   philosophy.
-3. Add CSS if you want it coloured differently — not required.
+   INFINITE picks it up automatically. With eleven categories, each one would
+   appear in 5/11 of sets instead of half, and the suite's 50% check needs
+   loosening to match.
+2. Add CSS if you want it coloured differently — not required.
 
 > **Gotcha.** The suite asserts every category in `CATEGORIES` has at least 35
-> prompts, so INFINITE never leans on a thin category. A new category with three
-> prompts fails the build. Write the prompts first, or relax that check
-> deliberately.
+> prompts, and that the largest and smallest categories differ by no more than
+> ten. A new category needs about as many prompts as the others before it can
+> ship. Write the prompts first, or relax those checks deliberately.
 
 ---
 
@@ -518,8 +531,9 @@ node tests/play.test.js     # a full five-prompt game against a fake DOM
 | Dozens of known-wrong answers still miss | No leniency rule turns misses into credit |
 | No three-word opening used by more than 80% of prompts | Keeps the writing varied |
 | At least 20 question-form prompts and 15 with lead-ins | Same |
-| Every category has at least 35 prompts | Infinite never leans on a thin category |
-| Infinite runs 25+ sets without repeating a prompt | The library is deep enough to feel bottomless |
+| Every category has at least 35 prompts, all within ten of each other | Infinite never leans on a thin category |
+| Every category appears in about half of Infinite sets | The draw is uniform |
+| Infinite runs 75+ sets without repeating a prompt | The library is deep enough to feel bottomless |
 
 It also prints `WARN` lines for answer pairs close enough that a typo on one
 could reach the other. A warning is not a failure — exact matching runs first and
@@ -596,18 +610,19 @@ it explicitly:
 four unscheduled prompts from other categories:
 
 ```js
-  ['geo-baltic', 'hist-wwi-battles', 'lit-shakespeare-comedies', 'sci-leptons', 'arts-les-six'],
+  ['geo-baltic', 'socsci-big-five', 'pop-muppets', 'arts-les-six', 'phil-razors'],
 ```
 
-Check for category clashes — that line is geography, history, literature,
-science, arts. Good.
+Check for category clashes — that line is geography, social science, pop
+culture, music (`arts-les-six` is a music prompt despite its prefix) and
+philosophy. Good.
 
 **5. Run the suites:**
 
 ```sh
 $ node tests/data.test.js
-prompts: 167, categories covered: 6
-10598/10598 checks passed
+prompts: 761, categories covered: 10
+71939/71939 checks passed
 ```
 
 Done.
