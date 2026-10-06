@@ -41,8 +41,8 @@ DAILY puzzle.
 | `assets/data.js:13` | `CATEGORIES` — the ten categories, their display names and emoji |
 | `assets/data.js:29` | `SET_SIZE` — how many categories INFINITE draws per set |
 | `assets/data.js:31` | `PROMPTS` — every prompt, grouped by category under banner comments |
-| `assets/data.js` (near the end) | `DAILY_SETS` — the calendar, one array of five ids per day |
-| `assets/data.js:10921` | `DAILY_EPOCH` — the local date that is day 1 |
+| `assets/data.js:5299` | `DAILY_SETS` — the calendar, one array of five ids per day |
+| `assets/data.js:5400` | `DAILY_EPOCH` — the local date that is day 1 |
 
 Inside `PROMPTS`, find the banner comment for your category and add your prompt
 there. The grouping is cosmetic — nothing breaks if a prompt is in the "wrong"
@@ -50,17 +50,17 @@ place — but keep it tidy.
 
 ```
 GEOGRAPHY                 data.js:32
-HISTORY                   data.js:938
-LITERATURE                data.js:1997
-SCIENCE                   data.js:3078
-VISUAL ARTS & MUSIC       data.js:4063    the original arts- prompts, now split by category
-MYTHOLOGY & PHILOSOPHY    data.js:5185    the original myth- and phil- prompts, now split
-VISUAL ARTS               data.js:6174
-MUSIC                     data.js:6975
-MYTHOLOGY                 data.js:7621
-PHILOSOPHY                data.js:7955
-SOCIAL SCIENCE            data.js:8702
-POP CULTURE               data.js:9775
+HISTORY                   data.js:601
+LITERATURE                data.js:1221
+SCIENCE                   data.js:1821
+VISUAL ARTS & MUSIC       data.js:2324    the original arts- prompts, now split by category
+MYTHOLOGY & PHILOSOPHY    data.js:2535    the original myth- and phil- prompts, now split
+VISUAL ARTS               data.js:2756
+MUSIC                     data.js:3186
+MYTHOLOGY                 data.js:3552
+PHILOSOPHY                data.js:3821
+SOCIAL SCIENCE            data.js:4227
+POP CULTURE               data.js:4700
 ```
 
 The two older blocks predate the split. Each prompt in them carries its own
@@ -119,8 +119,8 @@ prompt: 'What are the Seven Hills of Rome?'
 
 // Lead-in and instruction — best when a fact makes the prompt land harder.
 prompt: 'Twelve people have walked on the Moon. Name as many as you can.'
-prompt: 'Hera had reason to be furious. Name as many children of Zeus as you can.'
-prompt: 'Carbon takes many forms. Name as many allotropes as you can.'
+prompt: 'Five countries ring the Caspian Sea. Name as many as you can.'
+prompt: 'Queen Victoria had nine children. Name as many as you can.'
 ```
 
 A lead-in is also the natural place to put a count or a constraint that would
@@ -128,20 +128,33 @@ otherwise go in `note`. Keep it to one short sentence.
 
 Beyond shape, three things make a prompt good:
 
-**Bound the set if you can.** A prompt whose answer list is closed and complete
-is strictly better, because nobody can be wrongly penalised. Compare:
+**The answer list must be complete. This is the one hard rule.** A correct
+answer must never be marked wrong, so every prompt asks for a set you can list
+in full, every member of it. If you cannot be sure you have them all, the prompt
+does not go in. Compare:
 
 ```js
 // Closed: the list is the whole truth. A wrong answer is genuinely wrong.
 prompt: 'Name as many of the Seven Hills of Rome as you can.'
 
 // Open: a well-read player may name a real battle you did not list and eat -2.
+// Not allowed, however long the list.
 prompt: 'Name as many battles of the Napoleonic Wars as you can.'
 ```
 
-Open-ended prompts are still welcome — the game needs them — but list 20–30
-answers rather than 8, and expect to add aliases when someone reports a wrong
-miss.
+Watch for the quieter ways a set leaks:
+
+- **Fuzzy edges.** "Members of the Acropolis complex", "kinds of cadence",
+  "logical connectives", "anyone who was ever a Beatle": each has a core
+  everyone agrees on and a fringe nobody does. Narrow the prompt to the core
+  (`'Five master painters frescoed the Sistine walls…'`) and keep the fringe as
+  accepted extras if you like. Over-accepting is fine; under-accepting is not.
+- **Lists that grow.** Prizes, filmographies, discographies and memberships
+  change. Put the end year **in the prompt text itself**, not only in `note`
+  (`'Who won the Turner Prize between 1984 and 2025?'`). The suite checks this
+  for the award prompts.
+- **Translations and variant lists.** Where sources disagree (the Seven Sages,
+  Aristotle's virtues), accept every standard variant and say so in `note`.
 
 **Say the count in `note` when the set is closed.** It tells the player when to
 stop guessing, which is the heart of the game.
@@ -389,14 +402,14 @@ reported as already counted and does not consume one of the five slots.
 
 ## Scheduling a day
 
-`DAILY_SETS` (`assets/data.js:10843`) is an array of days. Each day is five
+`DAILY_SETS` (`assets/data.js:5299`) is an array of days. Each day is five
 prompt ids, **no category twice**:
 
 ```js
 const DAILY_SETS = [
   ['geo-afghanistan', 'hist-died-in-office', 'lit-dostoevsky', 'sci-noble-gases', 'arts-stravinsky-ballets'],
   // ...
-  ['geo-multiple-capitals', 'lit-shakespeare-histories', 'sci-states-of-matter', 'arts-gaudi', 'myth-underworld-rivers'],
+  ['geo-african-island-nations', 'hist-fifth-republic', 'sci-carpals', 'socsci-mbti', 'pop-pink-floyd'],
 ];
 ```
 
@@ -404,11 +417,12 @@ Day *N* uses set `(N − 1) % DAILY_SETS.length`, so the calendar cycles once it
 runs out. Day 1 is `DAILY_EPOCH`, currently `[2026, 9, 3]` — note the month is
 **zero-based**, so that is 3 October 2026.
 
-The 74 days written so far date from when there were six categories, so
-geography, literature and science appear on every one and the other two slots
-rotate among history and the arts, mythology and philosophy prompts. None of
-them uses social science or pop culture yet. New days should spread across all
-ten categories; nothing enforces a pattern beyond "five distinct categories".
+The 97 days written so far use every prompt in the library exactly once, so
+any prompt you add is unscheduled until you give it a day. Days 1 and 2 are the
+originals; the rest were laid out so that each category turns up at least every
+five days, every pair of categories meets regularly, and no day carries more
+than two giant (30+ answer) lists. New days should keep that spread; the suite
+enforces only "five distinct categories".
 
 > **Append; do not reorder.** A finished DAILY is cached in the player's browser
 > along with the prompt ids they saw. Rearranging existing days means a player
@@ -433,9 +447,9 @@ then picks one prompt per category at random, holding back everything the
 player has seen recently.
 
 That holdback is `RECENT_MEMORY`, which scales with the library
-(`Math.max(25, Math.round(PROMPTS.length * 0.6))`, 456 at 760 prompts). The
-practical effect, measured by the suite: about ninety consecutive sets before
-anything repeats. Keep the categories roughly the same size (the suite allows a
+(`Math.max(25, Math.round(PROMPTS.length * 0.8))`, 388 at 485 prompts). The
+practical effect: typically about eighty consecutive sets before anything
+repeats, and the suite insists on at least fifty-five. Keep the categories roughly the same size (the suite allows a
 spread of ten prompts), because a small category runs out of fresh prompts
 first. **Every prompt you add widens that window
 automatically**, and you register nothing for a prompt to appear here.
@@ -606,8 +620,9 @@ it explicitly:
 'Sweden|Sweeden',
 ```
 
-**4. Schedule it** (optional) by adding it to a new day in `DAILY_SETS`, taking
-four unscheduled prompts from other categories:
+**4. Schedule it** (optional) by appending a new day to `DAILY_SETS`, alongside
+four other new prompts from other categories (every existing prompt already has
+a day):
 
 ```js
   ['geo-baltic', 'socsci-big-five', 'pop-muppets', 'arts-les-six', 'phil-razors'],
@@ -621,8 +636,9 @@ philosophy. Good.
 
 ```sh
 $ node tests/data.test.js
-prompts: 761, categories covered: 10
-71939/71939 checks passed
+prompts: 486, categories covered: 10
+…
+<n>/<n> checks passed
 ```
 
 Done.
@@ -656,7 +672,8 @@ Before you commit:
 - [ ] `category` is a real key of `CATEGORIES`
 - [ ] Prompt text ends with `as you can.` or is a question ending in `?`
 - [ ] Its shape is not the same as the last five prompts you wrote
-- [ ] Five answers minimum; 20+ if the real set is open-ended
+- [ ] Five answers minimum, and **every** correct answer listed: no open-ended sets
+- [ ] A list that can grow (prizes, filmographies, memberships) names its end year in the prompt
 - [ ] `note` states the count for a closed set, or warns off the obvious trap
 - [ ] Aliases cover translations, alternate titles and shorthands — not spellings
 - [ ] Short answers (7 characters or fewer) that are easy to misspell have explicit aliases

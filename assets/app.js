@@ -245,9 +245,10 @@ function dailyPromptIds(day) {
 }
 
 /* How many recently-seen prompts INFINITE refuses to repeat. Scaled to the size
- * of the library so the promise holds as content grows: with 250 prompts it
- * holds back 150, about the last thirty sets. */
-const RECENT_MEMORY = Math.max(25, Math.round(PROMPTS.length * 0.6));
+ * of the library so the promise holds as content grows: with 485 prompts it
+ * holds back 388, about the last seventy-five sets. The smallest categories are
+ * what run dry first, since each turns up in half of all sets. */
+const RECENT_MEMORY = Math.max(25, Math.round(PROMPTS.length * 0.8));
 
 /* An infinite set takes SET_SIZE categories chosen uniformly without
  * replacement, so every category is equally likely to appear, then one prompt

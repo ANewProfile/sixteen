@@ -191,10 +191,10 @@ ok(kind('sci-leptons', 'Proton') === 'miss', 'a proton is not a lepton');
 
 ok(kind('lit-morrison', 'Love') === 'hit', 'a one-word title scores');
 ok(kind('lit-morrison', 'Song') === 'ask', 'half of Song of Solomon is prompted');
-ok(kind('arts-hudson-river', 'Cole') === 'hit', 'surname alias scores');
-ok(kind('arts-hudson-river', 'Thomas') === 'ask', 'Thomas Cole or Thomas Moran?');
+ok(kind('vis-prb', 'Millais') === 'hit', 'surname alias scores');
+ok(kind('vis-prb', 'Rossetti') === 'ask', 'Dante Gabriel or William Michael Rossetti?');
 ok(kind('sci-krebs', 'Alpha') === 'ask', 'a lone modifier is prompted');
-ok(kind('myth-norse', 'Thor') === 'hit', 'short single-word answers are unaffected');
+ok(kind('myth-pandavas', 'Bhima') === 'hit', 'short single-word answers are unaffected');
 
 // a typo inside a fragment still prompts rather than scoring a miss
 ok(kind('lit-dostoevsky', 'Karamzov') === 'ask', 'misspelt fragment is prompted');
@@ -252,33 +252,36 @@ ok(J('hist-thirteen-colonies', 'North Carolina').index !== J('hist-thirteen-colo
    'the Carolinas are distinct despite being two edits apart');
 ok(kind('hist-thirteen-colonies', 'Vermont') === 'miss', 'Vermont was not a colony');
 
-ok(J('hist-wwii-conferences', 'Yalta').index !== J('hist-wwii-conferences', 'Malta').index,
-   'Yalta and Malta stay separate conferences');
-ok(kind('hist-wwii-conferences', 'Conference') === 'ask', 'a bare noun is a fragment');
+ok(J('hist-apollo-landings', 'Apollo 11').index !== J('hist-apollo-landings', 'Apollo 12').index,
+   'Apollo 11 and Apollo 12 stay separate missions');
+ok(kind('hist-apollo-landings', 'Apollo 13') === 'miss', 'Apollo 13 never landed');
+ok(kind('hist-apollo-landings', 'Apollo') === 'ask', 'a bare name is a fragment');
 
 ok(kind('hist-chief-justices', 'Warren') === 'ask', 'Earl Warren or Warren Burger?');
 ok(kind('hist-chief-justices', 'Earl Warren') === 'hit', 'the full name resolves it');
 ok(kind('hist-chief-justices', 'Thurgood Marshall') === 'miss', 'he was an associate justice');
 
-ok(kind('arts-wright-buildings', 'Taliesin') === 'hit', 'Taliesin stands alone');
-ok(kind('arts-wright-buildings', 'Taliesin West') === 'hit', 'as does Taliesin West');
+ok(kind('vis-wright-unesco', 'Taliesin') === 'hit', 'Taliesin stands alone');
+ok(kind('vis-wright-unesco', 'Taliesin West') === 'hit', 'as does Taliesin West');
+ok(J('vis-wright-unesco', 'Taliesin').index !== J('vis-wright-unesco', 'Taliesin West').index,
+   'and they are different buildings');
 ok(kind('lit-sophocles', 'Oedipus') === 'ask', 'Oedipus Rex or at Colonus?');
 ok(kind('lit-sophocles', 'Medea') === 'miss', 'Medea is Euripides');
-ok(kind('phil-fallacies', 'Appeal') === 'ask', 'appeal to what?');
-ok(kind('geo-straits', 'Strait') === 'ask', 'which strait?');
+ok(kind('sci-heart', 'Atrium') === 'ask', 'which atrium?');
+ok(kind('hist-english-royal-houses', 'House') === 'ask', 'which house?');
 ok(kind('arts-holst-planets', 'Mars') === 'hit', 'a Holst movement scores');
 ok(kind('arts-holst-planets', 'Earth') === 'miss', 'Earth is absent from The Planets');
 ok(kind('sci-quarks', 'Up') === 'hit', 'two-letter answers work');
 ok(kind('sci-quarks', 'Gluon') === 'miss', 'a gluon is not a quark');
 
 const traps = [
-  ['arts-dutch-golden-age', 'Rubens'], ['hist-mesoamerica', 'Inca'],
+  ['vis-prb', 'J. M. W. Turner'], ['hist-confederate-states', 'Kentucky'],
   ['sci-dwarf-planets', 'Charon'], ['lit-bronte', 'Middlemarch'],
-  ['myth-vishnu-avatars', 'Ganesha'], ['phil-presocratics', 'Socrates'],
+  ['myth-vishnu-avatars', 'Ganesha'], ['phil-milesians-eleatics', 'Heraclitus'],
   ['geo-arabian-peninsula', 'Jordan'], ['sci-mohs-scale', 'Granite'],
   ['geo-soviet-republics', 'Poland'], ['myth-nine-muses', 'Athena'],
-  ['hist-reformers', 'Ignatius of Loyola'], ['sci-cranial-nerves', 'Sciatic'],
-  ['lit-epics', 'Ulysses'], ['arts-bebop', 'Louis Armstrong'],
+  ['hist-warsaw-pact', 'Yugoslavia'], ['sci-cranial-nerves', 'Sciatic'],
+  ['lit-narnia', 'The Hobbit'], ['mus-boston-six', 'Aaron Copland'],
 ];
 for (const [id, answer] of traps)
   ok(kind(id, answer) === 'miss', `${id}: "${answer}" must be a miss, got ${kind(id, answer)}`);
@@ -297,33 +300,31 @@ ok(J('sci-vitamins', 'Vitamin B1').index !== J('sci-vitamins', 'Vitamin B12').in
    'nor B1 and B12');
 ok(kind('sci-vitamins', 'Vitamin B4') === 'miss', 'there is no vitamin B4');
 
-ok(J('arts-ballets', 'La Sylphide').index !== J('arts-ballets', 'Les Sylphides').index,
-   'La Sylphide and Les Sylphides are different ballets');
-ok(J('geo-tectonic-plates', 'North American Plate').index
-   !== J('geo-tectonic-plates', 'South American Plate').index, 'the American plates stay apart');
+ok(J('sci-heart', 'Left atrium').index !== J('sci-heart', 'Right atrium').index,
+   'the two atria stay apart');
+ok(J('sci-heart', 'Left ventricle').index !== J('sci-heart', 'Right ventricle').index,
+   'and so do the ventricles');
 ok(J('geo-states-named-after-people', 'North Carolina').index
    !== J('geo-states-named-after-people', 'South Carolina').index, 'both Carolinas count separately');
 ok(J('lit-euripides', 'Iphigenia in Tauris').index !== J('lit-euripides', 'Iphigenia in Aulis').index,
    'the two Iphigenias are different plays');
-ok(J('sci-muscles', 'Biceps brachii').index !== J('sci-muscles', 'Triceps brachii').index,
-   'biceps and triceps stay apart');
-ok(J('sci-muscles', 'Pectoralis major').index !== J('sci-muscles', 'Pectoralis minor').index,
-   'pectoralis major and minor stay apart');
-ok(J('sci-muscles', 'Gluteus maximus').index !== J('sci-muscles', 'Gluteus minimus').index,
-   'gluteus maximus and minimus stay apart');
-ok(J('sci-collective-nouns', 'School of fish').index !== J('sci-collective-nouns', 'Shoal of fish').index,
-   'a school and a shoal are different nouns');
+ok(J('hist-stuart-monarchs', 'Charles I').index !== J('hist-stuart-monarchs', 'Charles II').index,
+   'Charles I and Charles II stay apart');
+ok(J('hist-stuart-monarchs', 'James I').index === J('hist-stuart-monarchs', 'James VI').index,
+   'James I of England is James VI of Scotland');
+ok(J('mus-flat-keys', 'B-flat major').index !== J('mus-flat-keys', 'E-flat major').index,
+   'B-flat and E-flat are different keys');
 ok(kind('hist-vps-to-president', 'George W. Bush') === 'ask', 'George W. was never vice president');
 ok(kind('hist-french-regimes', 'Sixth Republic') === 'ask', 'there is no Sixth Republic yet');
 ok(kind('myth-titans', 'Thetis') === 'miss', 'Thetis is a Nereid, not a Titan');
 ok(J('geo-states-ending-a', 'North Carolina').index !== J('geo-states-ending-a', 'South Carolina').index,
    'the Carolinas again');
-ok(J('sci-acids', 'Ethanoic acid').index !== J('sci-acids', 'Methanoic acid').index,
-   'ethanoic (acetic) and methanoic (formic) are different acids');
-ok(J('hist-us-wars', 'World War I').index !== J('hist-us-wars', 'World War II').index,
-   'the world wars stay apart');
-ok(kind('lit-number-titles', 'Fahrenheit 452') === 'miss', 'numerals in titles must agree');
-ok(kind('geo-tectonic-plates', 'American Plate') === 'ask', 'which American plate?');
+ok(J('socsci-humours', 'Black bile').index !== J('socsci-humours', 'Yellow bile').index,
+   'black and yellow bile are different humours');
+ok(J('hist-presidents-20c', 'Theodore Roosevelt').index
+   !== J('hist-presidents-20c', 'Franklin D. Roosevelt').index, 'the Roosevelts stay apart');
+ok(kind('pop-mcu', 'Iron Man 3') === 'hit' && kind('pop-mcu', 'Iron Man 5') === 'miss',
+   'numerals in titles must agree');
 
 ok(kind('geo-national-parks', 'Yosemite') === 'hit', 'a park scores');
 ok(kind('geo-national-parks', 'Canyon') === 'ask', 'which canyon?');
@@ -342,31 +343,31 @@ ok(J('lit-shakespeare-histories', 'Henry IV Part 1').index
 ok(kind('lit-shakespeare-histories', 'Henry IV') === 'ask', 'which part?');
 ok(kind('lit-shakespeare-histories', 'Hamlet') === 'miss', 'Hamlet is no history play');
 
-ok(kind('hist-supreme-court-cases', 'Marbury v. Madison') === 'hit', 'a case scores');
-ok(kind('hist-supreme-court-cases', 'Marbury') === 'ask', 'half a case name is prompted');
 ok(kind('hist-moonwalkers', 'Neil Armstrong') === 'hit', 'a moonwalker scores');
 ok(kind('hist-moonwalkers', 'Michael Collins') === 'miss', 'he stayed in orbit');
 ok(kind('hist-moonwalkers', 'Yuri Gagarin') === 'miss', 'and he never left Earth orbit');
 
-ok(kind('phil-thought-experiments', 'Trolley problem') === 'hit', 'a thought experiment scores');
-ok(kind('phil-thought-experiments', 'Ship of Theseus') === 'hit', 'and another');
+ok(kind('phil-organon', 'Prior Analytics') === 'hit', 'a book of the Organon scores');
+ok(kind('phil-organon', 'Analytics') === 'ask', 'Prior or Posterior?');
+ok(kind('phil-organon', 'Metaphysics') === 'miss', 'the Metaphysics is not logic');
 ok(kind('myth-apostles', 'James') === 'ask', 'which James?');
 ok(kind('myth-apostles', 'Peter') === 'hit', 'Peter is unambiguous');
 ok(kind('sci-units-after-people', 'Newton') === 'hit', 'a named unit scores');
 ok(kind('sci-units-after-people', 'Metre') === 'miss', 'the metre is named after nobody');
-ok(kind('arts-tempo-markings', 'Allegro') === 'hit', 'a tempo marking scores');
-ok(kind('arts-tempo-markings', 'Forte') === 'miss', 'forte is a dynamic, not a tempo');
+ok(kind('mus-scale-degrees', 'Dominant') === 'hit', 'a scale degree scores');
+ok(kind('mus-scale-degrees', 'Fortissimo') === 'miss', 'fortissimo is a dynamic, not a degree');
 
 const moreTraps = [
   ['geo-landlocked-africa', 'Kenya'], ['geo-hawaiian-islands', 'Guam'],
   ['geo-seven-summits', 'K2'], ['hist-seven-hills', 'Olympus'],
-  ['hist-hanseatic-cities', 'Venice'], ['lit-harlem-renaissance', 'Walt Whitman'],
-  ['lit-russian-poets', 'Tolstoy'], ['lit-joyce', 'Waiting for Godot'],
-  ['sci-carpals', 'Femur'], ['sci-organelles', 'Nephron'],
-  ['sci-crystal-systems', 'Amorphous'], ['sci-carbon-allotropes', 'Silicone'],
-  ['arts-gaudi', 'Guggenheim Museum'], ['arts-baroque-painters', 'Monet'],
-  ['myth-greek-monsters', 'Fenrir'], ['myth-hindu-gods', 'Amaterasu'],
-  ['phil-chinese', 'Nagarjuna'], ['phil-enlightenment', 'Nietzsche'],
+  ['hist-stuart-monarchs', 'Elizabeth I'], ['lit-fitzgerald', 'The Sun Also Rises'],
+  ['lit-tolstoy-novels', 'The Death of Ivan Ilyich'], ['lit-joyce', 'Waiting for Godot'],
+  ['sci-carpals', 'Femur'], ['sci-planets', 'Pluto'],
+  ['sci-crystal-systems', 'Amorphous'], ['sci-tastes', 'Spicy'],
+  ['vis-gaudi-unesco', 'Guggenheim Museum'], ['vis-new-wonders', 'Stonehenge'],
+  ['myth-pandavas', 'Krishna'], ['myth-twelve-imams', 'Abu Bakr'],
+  ['phil-darshanas', 'Buddhism'], ['socsci-p5', 'Germany'],
+  ['lit-pooh', 'Gopher'], ['pop-breakfast-club', 'Ferris Bueller'],
   ['myth-deadly-sins', 'Charity'], ['myth-underworld-rivers', 'Jordan'],
 ];
 for (const [id, answer] of moreTraps)
@@ -404,7 +405,9 @@ ok(ctx.PROMPTS.filter((p) => /\. /.test(p.prompt)).length >= 15,
     if (set.some((id) => seen.has(id))) break;
     set.forEach((id) => seen.add(id));
   }
-  ok(sets >= 75, `Infinite repeated a prompt after only ${sets} sets`);
+  /* The smallest categories (about 44 prompts, each in half of all sets) set the
+   * ceiling; a typical run goes about eighty sets, an unlucky one sixty. */
+  ok(sets >= 55, `Infinite repeated a prompt after only ${sets} sets`);
 }
 
 
@@ -418,23 +421,22 @@ ok(sameAnswer('geo-national-parks', 'Yellowstone', 'Yellowstone National Park'),
 ok(sameAnswer('geo-national-parks', 'Grand Canyon', 'Grand Canyon National Park'),
    'and so is a two-word park');
 ok(kind('geo-national-parks', 'National Park') === 'ask', 'the bare suffix names no park');
-ok(sameAnswer('geo-african-lakes', 'Victoria', 'Lake Victoria'), 'Lake Victoria == Victoria');
-ok(kind('geo-african-lakes', 'Lake') === 'ask', 'the bare word Lake names no lake');
-ok(sameAnswer('geo-tectonic-plates', 'Pacific', 'Pacific Plate'), 'Pacific Plate == Pacific');
-ok(sameAnswer('geo-mountain-ranges', 'Rocky Mountains', 'Rockies'), 'Rockies == Rocky Mountains');
-ok(sameAnswer('geo-mountain-ranges', 'Andes', 'Andes Mountains'), 'the suffix is optional');
-ok(sameAnswer('arts-gothic-cathedrals', 'Cologne', 'Cologne Cathedral'), 'cathedral suffix optional');
-ok(sameAnswer('hist-wwii-operations', 'Overlord', 'Operation Overlord'), 'Operation prefix optional');
-ok(sameAnswer('geo-straits', 'Hormuz', 'Strait of Hormuz'), 'Strait of is optional');
-ok(kind('geo-straits', 'Strait') === 'ask', 'the bare word Strait names no strait');
-ok(sameAnswer('hist-wwii-conferences', 'Yalta', 'Yalta Conference'), 'Conference suffix optional');
-ok(J('hist-wwii-conferences', 'Yalta').index !== J('hist-wwii-conferences', 'Malta').index,
-   'Yalta and Malta remain separate after stripping');
+ok(sameAnswer('geo-great-lakes-names', 'Superior', 'Lake Superior'), 'Lake Superior == Superior');
+ok(kind('geo-great-lakes-names', 'Lake') === 'ask', 'the bare word Lake names no lake');
+ok(sameAnswer('hist-d-day-beaches', 'Omaha', 'Omaha Beach'), 'Beach suffix optional');
+ok(sameAnswer('hist-english-royal-houses', 'Tudor', 'House of Tudor'), 'House of prefix optional');
+ok(sameAnswer('phil-mill-methods', 'Residues', 'Method of Residues'), 'Method of prefix optional');
+ok(sameAnswer('socsci-cabinet', 'Treasury', 'Department of the Treasury'), 'Department of the prefix optional');
+ok(kind('socsci-cabinet', 'Department') === 'ask', 'the bare word Department names no department');
+ok(sameAnswer('lit-harry-potter-books', 'Goblet of Fire', 'Harry Potter and the Goblet of Fire'),
+   'the series prefix is optional');
+ok(J('sci-mass-extinctions', 'Permian extinction').index !== J('sci-mass-extinctions', 'Ordovician').index,
+   'extinctions remain separate after stripping');
 
 // noise is per-prompt and must not leak
-ok(kind('sci-saturn-moons', 'Trench') === 'miss', 'Trench means nothing here');
+ok(kind('sci-uranus-moons', 'Beach') === 'miss', 'Beach means nothing here');
 ok(kind('geo-great-lakes', 'Lake') === 'miss', 'Lake is not declared noise in this prompt');
-ok(kind('geo-national-parks', 'Trench') === 'miss', 'nor Trench in the parks prompt');
+ok(kind('geo-national-parks', 'Beach') === 'miss', 'nor Beach in the parks prompt');
 
 // stripping must never collapse an answer to nothing
 for (const p of ctx.PROMPTS) {
@@ -447,12 +449,12 @@ for (const p of ctx.PROMPTS) {
 // ---- the fourth wave: new shapes
 ok(kind('geo-equator', 'Kenya') === 'hit', 'an equatorial country scores');
 ok(kind('geo-equator', 'Tanzania') === 'miss', 'Tanzania is just south of the line');
-ok(kind('geo-former-countries', 'Yugoslavia') === 'hit', 'a vanished country scores');
-ok(kind('geo-former-countries', 'Croatia') === 'miss', 'Croatia still exists');
+ok(kind('geo-france-borders', 'Brazil') === 'hit', 'French Guiana gives France a border with Brazil');
+ok(kind('geo-france-borders', 'Portugal') === 'miss', 'Spain is in the way');
 ok(kind('geo-state-capitals', 'Sacramento') === 'hit', 'a state capital scores');
 ok(kind('geo-state-capitals', 'Los Angeles') === 'miss', 'not a capital');
-ok(kind('geo-peninsulas', 'Iberian Peninsula') === 'hit', 'the suffix is noise here');
-ok(kind('geo-peninsulas', 'Peninsula') === 'ask', 'the bare suffix names nothing');
+ok(kind('sci-spine-regions', 'Lumbar vertebrae') === 'hit', 'the suffix is noise here');
+ok(kind('sci-spine-regions', 'Vertebrae') === 'ask', 'the bare suffix names nothing');
 
 ok(kind('hist-presidents-sec-state', 'James Monroe') === 'hit', 'Monroe held both offices');
 ok(kind('hist-presidents-sec-state', 'Abraham Lincoln') === 'miss', 'Lincoln never did');
@@ -460,55 +462,47 @@ ok(kind('hist-popes-20c', 'John Paul II') === 'hit', 'a 20th-century pope scores
 ok(J('hist-popes-20c', 'John Paul I').index !== J('hist-popes-20c', 'John Paul II').index,
    'the two John Pauls are distinct');
 ok(kind('hist-popes-20c', 'Francis') === 'miss', 'Francis was elected in 2013');
-ok(kind('hist-sieges', 'Siege of Vienna') === 'hit', 'the Siege of prefix is noise');
-ok(kind('hist-ancient-battles', 'Battle of Marathon') === 'hit', 'the Battle of prefix is noise');
-ok(kind('hist-ancient-battles', 'Waterloo') === 'miss', 'Waterloo is not antiquity');
+ok(kind('hist-d-day-beaches', 'Gold Beach') === 'hit', 'the Beach suffix is noise');
+ok(kind('hist-d-day-beaches', 'Dunkirk') === 'miss', 'Dunkirk was an evacuation, not a landing');
 
-ok(kind('lit-pen-names', 'Mark Twain') === 'hit', 'the pen name scores');
-ok(kind('lit-pen-names', 'Samuel Clemens') === 'hit', 'and so does the real name');
-ok(J('lit-pen-names', 'Mark Twain').index === J('lit-pen-names', 'Samuel Clemens').index,
+ok(kind('lit-fitzgerald', 'The Last Tycoon') === 'hit', 'the unfinished novel scores');
+ok(kind('lit-fitzgerald', 'The Love of the Last Tycoon') === 'hit', 'under either title');
+ok(J('lit-fitzgerald', 'The Last Tycoon').index === J('lit-fitzgerald', 'The Love of the Last Tycoon').index,
    'they are the same answer');
-ok(kind('lit-metrical-feet', 'Iamb') === 'hit', 'a metrical foot scores');
-ok(kind('lit-metrical-feet', 'Sonnet') === 'miss', 'a sonnet is not a foot');
-ok(kind('lit-unfinished', 'The Watsons') === 'hit', 'an unfinished novel scores');
-ok(kind('lit-unfinished', 'Pride and Prejudice') === 'miss', 'that one Austen finished');
+ok(kind('lit-bennet-sisters', 'Lizzy') === 'hit', 'a nickname scores');
+ok(kind('lit-bennet-sisters', 'Elizabeth Bennet') === 'hit', 'the surname is noise');
+ok(kind('lit-bennet-sisters', 'Charlotte') === 'miss', 'Charlotte Lucas is a friend, not a sister');
 
-ok(kind('sci-eponymous-laws', 'Ohm') === 'hit', 'a bare surname scores here');
-ok(kind('sci-eponymous-laws', 'Ohm\u2019s law') === 'hit', 'as does the full name');
-ok(kind('sci-named-after-euler', 'Euler') === 'ask', 'Euler what?');
-ok(J('sci-named-after-euler', 'Euler').message === 'Euler what?', 'with its own wording');
-ok(kind('sci-named-after-euler', 'Euler characteristic') === 'hit', 'a specific one scores');
+ok(kind('sci-trig-functions', 'Sine') === 'hit' && kind('sci-trig-functions', 'sin') === 'hit',
+   'a function scores by name or abbreviation');
+ok(J('sci-trig-functions', 'Secant').index !== J('sci-trig-functions', 'Cosecant').index,
+   'secant and cosecant are different functions');
 ok(kind('sci-glycolysis', 'Glucose-6-phosphate') === 'hit', 'a glycolysis intermediate scores');
 ok(J('sci-glycolysis', 'glucose 6 phosphate').index
    !== J('sci-glycolysis', 'fructose 6 phosphate').index, 'the two hexose phosphates are distinct');
 ok(kind('sci-glycolysis', 'Lactate') === 'miss', 'lactate comes after glycolysis');
 ok(kind('sci-si-prefixes', 'Femto') === 'hit', 'an SI prefix scores');
-ok(kind('sci-insect-orders', 'Coleoptera') === 'hit', 'an insect order scores');
-ok(kind('sci-insect-orders', 'Arachnida') === 'miss', 'spiders are not insects');
+ok(kind('sci-planets', 'Earth') === 'hit', 'a planet scores');
+ok(kind('sci-planets', 'Ceres') === 'miss', 'Ceres is a dwarf planet');
 
-ok(kind('arts-school-of-athens', 'Plato') === 'hit', 'a figure in the fresco scores');
-ok(kind('arts-school-of-athens', 'Raphael') === 'miss', 'the painter is not a philosopher in it');
-ok(kind('arts-brass', 'Trombone') === 'hit', 'a brass instrument scores');
-ok(kind('arts-brass', 'Oboe') === 'miss', 'the oboe is a woodwind');
-ok(kind('arts-percussion', 'Timpani') === 'hit', 'a percussion instrument scores');
-ok(kind('arts-tempo-markings', 'Largo') === 'hit', 'a tempo marking scores');
+ok(kind('vis-sistine-seers', 'Delphic Sibyl') === 'hit', 'a sibyl scores');
+ok(kind('vis-sistine-seers', 'Michelangelo') === 'miss', 'the painter is not a seer');
+ok(kind('mus-woodwind-quintet', 'French horn') === 'hit', 'the brass member scores');
+ok(kind('mus-woodwind-quintet', 'Trumpet') === 'miss', 'the trumpet is not in a wind quintet');
+ok(kind('mus-solfege', 'Sol') === 'hit', 'a solfège syllable scores');
 
-ok(kind('myth-children-of-zeus', 'Athena') === 'hit', 'a child of Zeus scores');
-ok(kind('myth-children-of-zeus', 'Poseidon') === 'miss', 'Poseidon is his brother');
-ok(kind('myth-trojan-war', 'Achilles') === 'hit', 'a Trojan War figure scores');
-ok(kind('myth-trojan-war', 'Theseus') === 'miss', 'Theseus was a generation earlier');
-ok(kind('myth-orishas', 'Shango') === 'hit', 'an orisha scores');
-ok(kind('phil-women', 'Hannah Arendt') === 'hit', 'a woman philosopher scores');
-ok(kind('phil-ethical-theories', 'Utilitarianism') === 'hit', 'an ethical theory scores');
-ok(kind('phil-ethical-theories', 'Epistemology') === 'miss', 'that is a branch, not a theory');
-ok(kind('phil-islamic', 'Avicenna') === 'hit' && kind('phil-islamic', 'Ibn Sina') === 'hit',
-   'both names for Avicenna score');
+ok(kind('myth-pandavas', 'Arjuna') === 'hit', 'a Pandava scores');
+ok(kind('myth-pandavas', 'Karna') === 'miss', 'Karna fought for the Kauravas');
+ok(kind('myth-sikh-gurus', 'Guru Nanak') === 'hit', 'the honorific is noise');
+ok(kind('phil-darshanas', 'Vedanta') === 'hit', 'an orthodox school scores');
+ok(kind('phil-eightfold-path', 'Right speech') === 'hit', 'the word Right is noise');
+ok(kind('phil-kybalion', 'Principle of Polarity') === 'hit', 'the Principle of prefix is noise');
 
 // ---- ten categories: fine arts and myth & philosophy split, social science and pop culture added
 for (const cat of ['visual', 'music', 'mythology', 'philosophy', 'socsci', 'popculture'])
   ok(!!ctx.CATEGORIES[cat], `${cat} is a category`);
 ok(!ctx.CATEGORIES.arts && !ctx.CATEGORIES.mythphil, 'the merged categories are gone');
-ok(ctx.PROMPT_BY_ID['arts-van-gogh'].category === 'visual', 'old arts- ids keep working as visual arts');
+ok(ctx.PROMPT_BY_ID['arts-vermeer'].category === 'visual', 'old arts- ids keep working as visual arts');
 ok(ctx.PROMPT_BY_ID['arts-verdi-operas'].category === 'music', 'and as music');
 ok(ctx.PROMPT_BY_ID['phil-five-pillars'].category === 'mythology', 'religion stays with mythology');
 ok(ctx.PROMPT_BY_ID['myth-plato'].category === 'philosophy', 'Plato moved to philosophy');
@@ -525,29 +519,37 @@ ok(kind('pop-star-trek-series', 'Star Trek') === 'ask', 'which Star Trek?');
 ok(kind('pop-bond-films', 'Never Say Never Again') === 'miss', 'not an Eon film');
 ok(kind('pop-disney-princesses', 'Elsa') === 'miss', 'Elsa is not in the lineup');
 ok(kind('pop-spielberg', 'E.T.') === 'hit' && kind('pop-spielberg', 'ET') === 'hit', 'E.T. either way');
-ok(kind('socsci-scotus-cases', 'Roe vs Wade') === 'hit', 'v. and vs. are the same');
+ok(kind('socsci-justices', 'Kagan') === 'hit', 'a justice scores by surname');
+ok(kind('socsci-justices', 'Ruth Bader Ginsburg') === 'miss', 'she is no longer on the Court');
 ok(kind('socsci-econ-nobel', 'Diamond') === 'ask', 'which Diamond?');
 ok(kind('socsci-econ-nobel', 'Keynes') === 'miss', 'Keynes died before the prize existed');
-ok(kind('socsci-cognitive-biases', 'Confirmation bias') === 'hit', 'the word bias is noise');
+ok(kind('socsci-cabinet', 'Department of Energy') === 'hit', 'the Department of prefix is noise');
 ok(kind('socsci-generations', 'Gen X') === 'hit', 'Gen X is Generation X');
 ok(kind('socsci-opec', 'Qatar') === 'miss', 'Qatar left OPEC');
 ok(kind('mus-modes', 'Lydian') === 'hit', 'a mode scores');
-ok(kind('mus-dynamics', 'ff') === 'hit', 'the abbreviation scores');
+ok(J('mus-note-values', 'Crotchet').index === J('mus-note-values', 'Quarter note').index,
+   'British and American names are the same note');
 ok(J('mus-intervals', 'Minor third').index !== J('mus-intervals', 'Major third').index,
    'major and minor thirds are different intervals');
 ok(kind('vis-classical-orders', 'Doric order') === 'hit', 'the word order is noise');
 ok(kind('vis-classical-orders', 'Gothic') === 'miss', 'Gothic is not a classical order');
 ok(kind('myth-pleiades', 'Electra') === 'hit', 'a Pleiad scores');
-ok(J('myth-volsungs', 'Sigmund').index === J('myth-volsungs', 'Siegmund').index,
-   'Sigmund and Siegmund are the same man');
+ok(J('myth-anemoi', 'Boreas').index === J('myth-anemoi', 'Aquilo').index,
+   'Boreas and Aquilo are the same wind');
 ok(kind('phil-five-ways', 'Argument from motion') === 'hit', 'the argument-from prefix is noise');
 ok(kind('phil-syllogisms', 'Barbara') === 'hit', 'the first syllogism scores');
 ok(J('phil-syllogisms', 'Celarent').index !== J('phil-syllogisms', 'Celaront').index,
    'Celarent and Celaront are different moods');
-ok(J('socsci-ocracies', 'Matriarchy').index !== J('socsci-ocracies', 'Patriarchy').index,
-   'matriarchy and patriarchy stay apart');
-ok(J('socsci-scripts', 'Linear A').index !== J('socsci-scripts', 'Linear B').index,
-   'Linear A and Linear B stay apart');
+ok(J('socsci-humours', 'Phlegm').index !== J('socsci-humours', 'Phlegmatic').index,
+   'a humour and its temperament stay apart');
+ok(J('socsci-sectors', 'Quaternary').index !== J('socsci-sectors', 'Quinary').index,
+   'the higher sectors stay apart');
+
+// ---- every answer a player could rightly give must be accepted: date-bound
+// lists say where they stop in the prompt itself, not just in a note
+for (const id of ['socsci-econ-nobel', 'lit-women-nobel', 'lit-latin-american-nobel', 'lit-booker',
+                  'pop-eurovision', 'lit-nobel-21c', 'vis-pritzker', 'vis-turner-prize', 'pop-animated-oscar'])
+  ok(/\b(19|20)\d\d\b/.test(ctx.PROMPT_BY_ID[id].prompt), `${id} should name its end year in the prompt`);
 
 console.log(`\n${checks - fails}/${checks} checks passed`);
 process.exit(fails ? 1 : 0);

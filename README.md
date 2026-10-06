@@ -42,7 +42,7 @@ exist.
   spoiler-free block of squares to copy and share.
 - **Infinite** — a freshly assembled set of five, as often as you like. Recently
   seen prompts are held back in proportion to the size of the library, so you can
-  play about ninety consecutive sets (some 450 prompts) before anything
+  typically play about eighty consecutive sets (some 400 prompts) before anything
   repeats.
 
 Everything is stored in `localStorage` on your own device. There is no backend,
@@ -80,10 +80,10 @@ file keeps Pages from running the files through Jekyll.
 > suite enforces, and a worked example. What follows is the summary.
 
 
-`assets/data.js` holds everything: 760 prompts over ten categories, about 75
-apiece, and seventy-four authored days. Day 75 wraps back to day 1's set, so the
-calendar cycles until you add more. Nearly 400 prompts sit outside the calendar
-and are reached only through Infinite mode.
+`assets/data.js` holds everything: 485 prompts over ten categories, 44 to 54
+apiece, and ninety-seven authored days that use every prompt exactly once. Day 98
+wraps back to day 1's set, so the calendar cycles until you add more. Every
+prompt's answer list is complete: a correct answer is never marked wrong.
 
 A prompt looks like this:
 
