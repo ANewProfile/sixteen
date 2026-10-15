@@ -1,0 +1,296 @@
+/* Plain, functional styling for the admin portal. The admin accent marks
+ * every admin screen, including the login, so it isn't mistaken for the
+ * player site. */
+.page {
+  --accent: #b42318;
+  --muted: color-mix(in srgb, var(--foreground) 60%, transparent);
+  --line: color-mix(in srgb, var(--foreground) 18%, transparent);
+  --panel: color-mix(in srgb, var(--foreground) 4%, var(--background));
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --accent: #f97066;
+  }
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--accent);
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--background);
+  background: var(--accent);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  flex: 1;
+}
+
+.nav a,
+.link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.who {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.page h1 {
+  font-size: 1.5rem;
+}
+
+.page h2,
+.page h3 {
+  font-size: 1.1rem;
+}
+
+.page h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.page code {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.85em;
+}
+
+.page ul.error {
+  padding-left: 1.2rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.panel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alert {
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.error {
+  color: var(--accent);
+}
+
+.success {
+  color: #067647;
+}
+
+@media (prefers-color-scheme: dark) {
+  .success {
+    color: #47cd89;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.field span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.page input,
+.page select,
+.page textarea {
+  font: inherit;
+  color: inherit;
+  background: var(--background);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  width: 100%;
+  min-width: 0;
+}
+
+.page textarea {
+  min-height: 120px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.85rem;
+}
+
+.button,
+.secondary {
+  font: inherit;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  border: 1px solid var(--accent);
+}
+
+.button {
+  background: var(--accent);
+  color: var(--background);
+  font-weight: 600;
+}
+
+.secondary {
+  background: transparent;
+  color: inherit;
+  border-color: var(--line);
+}
+
+.button:disabled,
+.secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: end;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.answer {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) minmax(0, 1.5fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .answer {
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+  }
+
+  .answer > :nth-child(3) {
+    grid-column: 2 / 3;
+  }
+}
+
+.answerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.extras {
+  margin-left: 2.5rem;
+  font-size: 0.9rem;
+}
+
+.extras summary {
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.extras > div {
+  margin-top: 8px;
+}
+
+@media (max-width: 560px) {
+  .extras {
+    margin-left: 0;
+  }
+}
+
+.token {
+  font-family: var(--font-geist-mono), monospace;
+  word-break: break-all;
+  padding: 8px 10px;
+  border: 1px dashed var(--line);
+  border-radius: 6px;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.list li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.time {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.login {
+  width: 100%;
+  max-width: 380px;
+  margin: 10vh auto 0;
+}

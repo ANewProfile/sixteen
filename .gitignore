@@ -1,5 +1,27 @@
-# SIXTEEN is a static site: no dependencies, no build output, no secrets.
-# Everything below is incidental cruft, not project artifacts.
+# SIXTEEN is a Next.js app deployed on Vercel, backed by a Turso database.
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# next.js / vercel build output
+/.next/
+/out/
+/build
+.vercel
+
+# env files hold the Turso URL and token; only the example is committed
+.env*
+!.env.example
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# debug
+npm-debug.log*
 
 # macOS
 .DS_Store
@@ -10,7 +32,3 @@
 .idea/
 *.swp
 *~
-
-# only matters if dev tooling is ever added; the site itself needs none
-node_modules/
-*.log
